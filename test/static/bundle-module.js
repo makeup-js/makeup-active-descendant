@@ -1,19 +1,6 @@
-$_mod.installed("makeup-active-descendant$0.0.1", "makeup-navigation-emitter", "0.0.1");
-$_mod.main("/makeup-navigation-emitter$0.0.1", "");
-$_mod.def("/makeup-navigation-emitter$0.0.1/util", function(require, exports, module, __filename, __dirname) { "use strict";
-
-function nodeListToArray(nodeList) {
-    return Array.prototype.slice.call(nodeList);
-}
-
-module.exports = {
-    nodeListToArray: nodeListToArray
-};
-
-});
-$_mod.installed("makeup-navigation-emitter$0.0.1", "makeup-key-emitter", "0.0.2");
-$_mod.main("/makeup-key-emitter$0.0.2", "");
-$_mod.installed("makeup-key-emitter$0.0.2", "custom-event-polyfill", "0.3.0");
+$_mod.installed("makeup-active-descendant$0.0.1", "makeup-navigation-emitter", "0.0.2");
+$_mod.main("/makeup-navigation-emitter$0.0.2", "");
+$_mod.installed("makeup-navigation-emitter$0.0.2", "custom-event-polyfill", "0.3.0");
 $_mod.main("/custom-event-polyfill$0.3.0", "custom-event-polyfill");
 $_mod.def("/custom-event-polyfill$0.3.0/custom-event-polyfill", function(require, exports, module, __filename, __dirname) { // Polyfill for creating CustomEvents on IE9/10/11
 
@@ -61,6 +48,20 @@ try {
 }
 
 });
+$_mod.def("/makeup-navigation-emitter$0.0.2/util", function(require, exports, module, __filename, __dirname) { "use strict";
+
+function nodeListToArray(nodeList) {
+    return Array.prototype.slice.call(nodeList);
+}
+
+module.exports = {
+    nodeListToArray: nodeListToArray
+};
+
+});
+$_mod.installed("makeup-navigation-emitter$0.0.2", "makeup-key-emitter", "0.0.2");
+$_mod.main("/makeup-key-emitter$0.0.2", "");
+$_mod.installed("makeup-key-emitter$0.0.2", "custom-event-polyfill", "0.3.0");
 $_mod.def("/makeup-key-emitter$0.0.2/util", function(require, exports, module, __filename, __dirname) { 'use strict';
 
 /*
@@ -170,7 +171,7 @@ module.exports = {
 };
 
 });
-$_mod.installed("makeup-navigation-emitter$0.0.1", "makeup-exit-emitter", "0.0.2");
+$_mod.installed("makeup-navigation-emitter$0.0.2", "makeup-exit-emitter", "0.0.2");
 $_mod.main("/makeup-exit-emitter$0.0.2", "");
 $_mod.installed("makeup-exit-emitter$0.0.2", "custom-event-polyfill", "0.3.0");
 $_mod.def("/makeup-exit-emitter$0.0.2/index", function(require, exports, module, __filename, __dirname) { 'use strict';
@@ -234,7 +235,7 @@ module.exports = {
 };
 
 });
-$_mod.def("/makeup-navigation-emitter$0.0.1/index", function(require, exports, module, __filename, __dirname) { 'use strict';
+$_mod.def("/makeup-navigation-emitter$0.0.2/index", function(require, exports, module, __filename, __dirname) { 'use strict';
 
 // requires Object.assign polyfill or transform for IE
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Polyfill
@@ -249,12 +250,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Util = require('/makeup-navigation-emitter$0.0.1/util'/*'./util.js'*/);
+var Util = require('/makeup-navigation-emitter$0.0.2/util'/*'./util.js'*/);
 var KeyEmitter = require('/makeup-key-emitter$0.0.2/index'/*'makeup-key-emitter'*/);
 var ExitEmitter = require('/makeup-exit-emitter$0.0.2/index'/*'makeup-exit-emitter'*/);
 var dataSetKey = 'data-makeup-index';
 
 var defaultOptions = {
+    autoInit: 0,
+    autoReset: null,
     wrap: false
 };
 
@@ -296,7 +299,9 @@ function onKeyEnd() {
 }
 
 function onFocusExit() {
-    // console.log(e);
+    if (this._options.autoReset !== null) {
+        this.index = this._options.autoReset;
+    }
 }
 
 function onMutation() {
@@ -335,10 +340,8 @@ var LinearNavigationModel = function (_NavigationModel) {
         var _this = _possibleConstructorReturn(this, (LinearNavigationModel.__proto__ || Object.getPrototypeOf(LinearNavigationModel)).call(this));
 
         _this._options = _extends({}, defaultOptions, selectedOptions);
-
-        _this._index = null;
-
         _this._el = el;
+        _this._index = _this._options.autoInit;
         _this._itemSelector = itemSelector;
         _this._items = Util.nodeListToArray(el.querySelectorAll(itemSelector));
         return _this;
@@ -352,7 +355,7 @@ var LinearNavigationModel = function (_NavigationModel) {
     }, {
         key: 'atStart',
         value: function atStart() {
-            return this.index === 0;
+            return this.index <= 0;
         }
     }, {
         key: 'index',
@@ -366,7 +369,7 @@ var LinearNavigationModel = function (_NavigationModel) {
                         toIndex: newIndex,
                         fromIndex: this.index
                     },
-                    bubbles: false // mirror the native mouseleave event
+                    bubbles: false
                 }));
                 this._index = newIndex;
             }
@@ -487,7 +490,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var NavigationEmitter = require('/makeup-navigation-emitter$0.0.1/index'/*'makeup-navigation-emitter'*/);
+var NavigationEmitter = require('/makeup-navigation-emitter$0.0.2/index'/*'makeup-navigation-emitter'*/);
 var nextID = require('/makeup-next-id$0.0.1/index'/*'makeup-next-id'*/);
 var Util = require('/makeup-active-descendant$0.0.1/util'/*'./util.js'*/);
 
@@ -503,7 +506,10 @@ function onModelChange(e) {
     if (fromItem) {
         fromItem.classList.remove('active-descendant');
     }
-    toItem.classList.add('active-descendant');
+
+    if (toItem) {
+        toItem.classList.add('active-descendant');
+    }
 
     this._el.dispatchEvent(new CustomEvent('activeDescendantChange', {
         detail: {
@@ -540,7 +546,7 @@ var LinearActiveDescendant = function (_ActiveDescendant) {
 
         var _this = _possibleConstructorReturn(this, (LinearActiveDescendant.__proto__ || Object.getPrototypeOf(LinearActiveDescendant)).call(this, el));
 
-        _this._navigationEmitter = NavigationEmitter.createLinear(el, itemSelector);
+        _this._navigationEmitter = NavigationEmitter.createLinear(el, itemSelector, { autoInit: -1, autoReset: -1 });
 
         _this._focusEl = focusEl;
         _this._ownedEl = ownedEl;

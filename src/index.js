@@ -16,7 +16,10 @@ function onModelChange(e) {
     if (fromItem) {
         fromItem.classList.remove('active-descendant');
     }
-    toItem.classList.add('active-descendant');
+
+    if (toItem) {
+        toItem.classList.add('active-descendant');
+    }
 
     this._el.dispatchEvent(new CustomEvent('activeDescendantChange', {
         detail: {
@@ -49,7 +52,7 @@ class LinearActiveDescendant extends ActiveDescendant {
     constructor(el, focusEl, ownedEl, itemSelector) {
         super(el);
 
-        this._navigationEmitter = NavigationEmitter.createLinear(el, itemSelector);
+        this._navigationEmitter = NavigationEmitter.createLinear(el, itemSelector, { autoInit: -1, autoReset: -1 });
 
         this._focusEl = focusEl;
         this._ownedEl = ownedEl;

@@ -19,12 +19,12 @@ appender.addEventListener('click', function() {
     });
 });
 
-widgetEls.forEach(function(el, index) {
-    navs.push(ActiveDescendant.createLinear(el, el.querySelector('input'), el.querySelector('ul'), 'li'));
-    navs[index].index = 0;
+widgetEls.forEach(function(el) {
     el.addEventListener('activeDescendantChange', function(e) {
         console.log(e);
     });
+
+    navs.push(ActiveDescendant.createLinear(el, el.querySelector('input'), el.querySelector('ul'), 'li'));
 });
 
 wrapCheckbox.addEventListener('change', function(e) {
