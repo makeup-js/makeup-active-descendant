@@ -5,13 +5,22 @@ const nextID = require('makeup-next-id');
 const Util = require('./util.js');
 
 function onModelMutation() {
+    const modelIndex = this._navigationEmitter.model.index;
+
     this._items = Util.nodeListToArray(this._el.querySelectorAll(this._itemSelector));
-    this.updateView();
+
+    this._items.forEach(function(item, index) {
+        if (index !== modelIndex) {
+            item.classList.remove('active-descendant');
+        } else {
+            item.classList.add('active-descendant');
+        }
+    });
 }
 
 function onModelChange(e) {
-    const fromItem = this.items[e.detail.fromIndex];
-    const toItem = this.items[e.detail.toIndex];
+    const fromItem = this._items[e.detail.fromIndex];
+    const toItem = this._items[e.detail.toIndex];
 
     if (fromItem) {
         fromItem.classList.remove('active-descendant');
@@ -30,22 +39,14 @@ function onModelChange(e) {
     }));
 }
 
-function onUpdateEachItem(item, index) {
-    if (index !== this._navigationEmitter.model.index) {
-        item.classList.remove('active-descendant');
-    } else {
-        item.classList.add('active-descendant');
-    }
-}
-
 class ActiveDescendant {
     constructor(el) {
         this._el = el;
-        this.onMutationListener = onModelMutation.bind(this);
-        this.onChangeListener = onModelChange.bind(this);
+        this._onMutationListener = onModelMutation.bind(this);
+        this._onChangeListener = onModelChange.bind(this);
 
-        el.addEventListener('navigationModelMutation', this.onMutationListener);
-        el.addEventListener('navigationModelChange', this.onChangeListener);
+        el.addEventListener('navigationModelMutation', this._onMutationListener);
+        el.addEventListener('navigationModelChange', this._onChangeListener);
     }
 }
 
@@ -69,22 +70,9 @@ class LinearActiveDescendant extends ActiveDescendant {
         this._items = Util.nodeListToArray(ownedEl.querySelectorAll(itemSelector));
 
         // ensure each item has an id
-        this.items.forEach(function(itemEl) {
+        this._items.forEach(function(itemEl) {
             nextID(itemEl);
         });
-    }
-
-    updateView() {
-        this.items.forEach(onUpdateEachItem.bind(this));
-    }
-
-    get items() {
-        return this._items;
-    }
-
-    set index(newIndex) {
-        this._navigationEmitter.model.index = newIndex;
-        this.updateView();
     }
 
     set wrap(newWrap) {

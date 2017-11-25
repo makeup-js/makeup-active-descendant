@@ -13,13 +13,22 @@ var nextID = require('makeup-next-id');
 var Util = require('./util.js');
 
 function onModelMutation() {
+    var modelIndex = this._navigationEmitter.model.index;
+
     this._items = Util.nodeListToArray(this._el.querySelectorAll(this._itemSelector));
-    this.updateView();
+
+    this._items.forEach(function (item, index) {
+        if (index !== modelIndex) {
+            item.classList.remove('active-descendant');
+        } else {
+            item.classList.add('active-descendant');
+        }
+    });
 }
 
 function onModelChange(e) {
-    var fromItem = this.items[e.detail.fromIndex];
-    var toItem = this.items[e.detail.toIndex];
+    var fromItem = this._items[e.detail.fromIndex];
+    var toItem = this._items[e.detail.toIndex];
 
     if (fromItem) {
         fromItem.classList.remove('active-descendant');
@@ -38,23 +47,15 @@ function onModelChange(e) {
     }));
 }
 
-function onUpdateEachItem(item, index) {
-    if (index !== this._navigationEmitter.model.index) {
-        item.classList.remove('active-descendant');
-    } else {
-        item.classList.add('active-descendant');
-    }
-}
-
 var ActiveDescendant = function ActiveDescendant(el) {
     _classCallCheck(this, ActiveDescendant);
 
     this._el = el;
-    this.onMutationListener = onModelMutation.bind(this);
-    this.onChangeListener = onModelChange.bind(this);
+    this._onMutationListener = onModelMutation.bind(this);
+    this._onChangeListener = onModelChange.bind(this);
 
-    el.addEventListener('navigationModelMutation', this.onMutationListener);
-    el.addEventListener('navigationModelChange', this.onChangeListener);
+    el.addEventListener('navigationModelMutation', this._onMutationListener);
+    el.addEventListener('navigationModelChange', this._onChangeListener);
 };
 
 var LinearActiveDescendant = function (_ActiveDescendant) {
@@ -81,29 +82,13 @@ var LinearActiveDescendant = function (_ActiveDescendant) {
         _this._items = Util.nodeListToArray(ownedEl.querySelectorAll(itemSelector));
 
         // ensure each item has an id
-        _this.items.forEach(function (itemEl) {
+        _this._items.forEach(function (itemEl) {
             nextID(itemEl);
         });
         return _this;
     }
 
     _createClass(LinearActiveDescendant, [{
-        key: 'updateView',
-        value: function updateView() {
-            this.items.forEach(onUpdateEachItem.bind(this));
-        }
-    }, {
-        key: 'items',
-        get: function get() {
-            return this._items;
-        }
-    }, {
-        key: 'index',
-        set: function set(newIndex) {
-            this._navigationEmitter.model.index = newIndex;
-            this.updateView();
-        }
-    }, {
         key: 'wrap',
         set: function set(newWrap) {
             this._navigationEmitter.model.options.wrap = newWrap;

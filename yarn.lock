@@ -1559,8 +1559,8 @@ escodegen@^1.6.0, escodegen@^1.8.1:
     source-map "~0.5.6"
 
 eslint-config-ebay@~0.1:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/eslint-config-ebay/-/eslint-config-ebay-0.1.5.tgz#5103e2b5132e65d83d86dc10430359c230050848"
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/eslint-config-ebay/-/eslint-config-ebay-0.1.6.tgz#917a07cd776ab77078d3786b568e8b41c6e6a8b7"
 
 eslint-scope@^3.7.1:
   version "3.7.1"
@@ -2891,8 +2891,8 @@ makeup-key-emitter@~0.0:
     custom-event-polyfill "~0.3"
 
 makeup-navigation-emitter@~0.0:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/makeup-navigation-emitter/-/makeup-navigation-emitter-0.0.2.tgz#8e45b9ef4565ce208dae7af7735c08fefd6fffbc"
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/makeup-navigation-emitter/-/makeup-navigation-emitter-0.0.3.tgz#dc6807278044d1af484d7f9c1e5db0938c9bab8d"
   dependencies:
     custom-event-polyfill "^0.3.0"
     makeup-exit-emitter "~0.0"
