@@ -27,6 +27,7 @@ function onModelChange(e) {
 
     if (toItem) {
         toItem.classList.add('active-descendant');
+        this._focusEl.setAttribute('aria-activedescendant', toItem.id);
     }
 
     this._el.dispatchEvent(new CustomEvent('activeDescendantChange', {
