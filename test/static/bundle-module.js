@@ -1,4 +1,4 @@
-$_mod.installed("makeup-active-descendant$0.0.1", "makeup-navigation-emitter", "0.0.3");
+$_mod.installed("makeup-active-descendant$0.0.2", "makeup-navigation-emitter", "0.0.3");
 $_mod.main("/makeup-navigation-emitter$0.0.3", "");
 $_mod.installed("makeup-navigation-emitter$0.0.3", "custom-event-polyfill", "0.3.0");
 $_mod.main("/custom-event-polyfill$0.3.0", "custom-event-polyfill");
@@ -436,7 +436,7 @@ var NavigationEmitter = function () {
 module.exports = NavigationEmitter;
 
 });
-$_mod.installed("makeup-active-descendant$0.0.1", "makeup-next-id", "0.0.1");
+$_mod.installed("makeup-active-descendant$0.0.2", "makeup-next-id", "0.0.1");
 $_mod.main("/makeup-next-id$0.0.1", "");
 $_mod.def("/makeup-next-id$0.0.1/index", function(require, exports, module, __filename, __dirname) { 'use strict';
 
@@ -458,7 +458,7 @@ module.exports = function (el) {
 };
 
 });
-$_mod.def("/makeup-active-descendant$0.0.1/util", function(require, exports, module, __filename, __dirname) { "use strict";
+$_mod.def("/makeup-active-descendant$0.0.2/util", function(require, exports, module, __filename, __dirname) { "use strict";
 
 function nodeListToArray(nodeList) {
     return Array.prototype.slice.call(nodeList);
@@ -469,7 +469,7 @@ module.exports = {
 };
 
 });
-$_mod.def("/makeup-active-descendant$0.0.1/index", function(require, exports, module, __filename, __dirname) { 'use strict';
+$_mod.def("/makeup-active-descendant$0.0.2/index", function(require, exports, module, __filename, __dirname) { 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -481,7 +481,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var NavigationEmitter = require('/makeup-navigation-emitter$0.0.3/index'/*'makeup-navigation-emitter'*/);
 var nextID = require('/makeup-next-id$0.0.1/index'/*'makeup-next-id'*/);
-var Util = require('/makeup-active-descendant$0.0.1/util'/*'./util.js'*/);
+var Util = require('/makeup-active-descendant$0.0.2/util'/*'./util.js'*/);
 
 function onModelMutation() {
     var modelIndex = this._navigationEmitter.model.index;
