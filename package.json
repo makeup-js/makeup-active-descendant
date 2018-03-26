@@ -53,5 +53,10 @@
   "dependencies": {
     "makeup-navigation-emitter": "~0.0",
     "makeup-next-id": "^0.0.1"
-  }
+  },
+  "files": [
+    "browser.json",
+    "index.js",
+    "yarn.lock"
+  ]
 }
