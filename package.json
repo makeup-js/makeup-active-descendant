@@ -57,6 +57,7 @@
   "files": [
     "browser.json",
     "index.js",
+    "util.js",
     "yarn.lock"
   ]
 }
