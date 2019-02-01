@@ -7,7 +7,7 @@
     <a href="https://david-dm.org/makeup-js/makeup-active-descendant#info=devDependencies"><img src="https://david-dm.org/makeup-js/makeup-active-descendant/dev-status.svg" alt="devDependency status" /></a>
 </p>
 
-Implements ARIA active descendant keyboard navigation.
+Implements ARIA <a href="https://www.w3.org/WAI/GL/wiki/Using_aria-activedescendant_to_allow_changes_in_focus_within_widgets_to_be_communicated_to_Assistive_Technology">active descendant</a> keyboard navigation.
 
 A vanilla JavaScript port of <a href="https://github.com/ianmcburnie/jquery-active-descendant">jquery-active-descendant</a>.
 
@@ -40,13 +40,13 @@ const focusEl = widgetEl.querySelector('input');
 // get the owned element reference
 const ownedEl = widgetEl.querySelector('ul');
 
-// create a roving tabindex instance on the element
+// create an activeDescendant widget instance on the element
 const activeDescendant = ActiveDescendant.createLinear(widgetEl, focusEl, ownedEl, 'li');
 
 // listen for events (optional)
 widgetEl.addEventListener('activeDescendantChange', function(e) {
-    // console.log(e.detail);
-})
+    console.log(e.detail);
+});
 ```
 
 Markup before:
@@ -62,18 +62,43 @@ Markup before:
 </div>
 ```
 
-Markup after:
+Markup after instantiation:
+
+```html
+<div class="widget" id="widget-0">
+    <input type="text" aria-owns="widget-0-list-0">
+    <ul id="widget-0-list-0">
+        <li id="widget-0-item-0" data-makeup-index="0">Item 1</li>
+        <li id="widget-0-item-1" data-makeup-index="1">Item 2</li>
+        <li id="widget-0-item-2" data-makeup-index="2">Item 3</li>
+    </ul>
+</div>
+```
+
+Markup after pressing down arrow key on focusable element:
 
 ```html
 <div class="widget" id="widget-0">
     <input type="text" aria-activedescendant="widget-0-item-0" aria-owns="widget-0-list-0">
     <ul id="widget-0-list-0">
-        <li id="widget-0-item-0" data-makeup-index="0">Item 1</li>
+        <li class="active-descendant" id="widget-0-item-0" data-makeup-index="0">Item 1</li>
         <li id="widget-0-item-1" data-makeup-index="1">Item 2</li>
-        <li id="widget-0-item-1" data-makeup-index="2">Item 3</li>
+        <li id="widget-0-item-2" data-makeup-index="2">Item 3</li>
     </ul>
 </div>
 ```
+
+Use CSS to style the active descendant however you wish:
+
+```css
+.widget .active-descendant {
+    font-weight: bold;
+}
+```
+
+## Options
+
+* `activeDescendantClassName`: the HTML class name that will be applied to the ARIA active descendant element (default: 'active-descendant')
 
 ## Custom Events        
 

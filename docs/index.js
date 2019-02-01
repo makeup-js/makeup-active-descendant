@@ -24,7 +24,9 @@ widgetEls.forEach(function(el) {
         console.log(e);
     });
 
-    navs.push(ActiveDescendant.createLinear(el, el.querySelector('input'), el.querySelector('ul'), 'li'));
+    var widget = ActiveDescendant.createLinear(el, el.querySelector('input'), el.querySelector('ul'), 'li');
+
+    navs.push(widget);
 });
 
 wrapCheckbox.addEventListener('change', function(e) {

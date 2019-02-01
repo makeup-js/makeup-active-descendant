@@ -4,6 +4,10 @@ const NavigationEmitter = require('makeup-navigation-emitter');
 const nextID = require('makeup-next-id');
 const Util = require('./util.js');
 
+const defaultOptions = {
+    activeDescendantClassName: 'active-descendant'
+};
+
 function onModelMutation() {
     const modelIndex = this._navigationEmitter.model.index;
 
@@ -11,9 +15,9 @@ function onModelMutation() {
 
     this._items.forEach(function(item, index) {
         if (index !== modelIndex) {
-            item.classList.remove('active-descendant');
+            item.classList.remove(this._options.activeDescendantClassName);
         } else {
-            item.classList.add('active-descendant');
+            item.classList.add(this._options.activeDescendantClassName);
         }
     });
 }
@@ -23,11 +27,11 @@ function onModelChange(e) {
     const toItem = this._items[e.detail.toIndex];
 
     if (fromItem) {
-        fromItem.classList.remove('active-descendant');
+        fromItem.classList.remove(this._options.activeDescendantClassName);
     }
 
     if (toItem) {
-        toItem.classList.add('active-descendant');
+        toItem.classList.add(this._options.activeDescendantClassName);
         this._focusEl.setAttribute('aria-activedescendant', toItem.id);
     }
 
@@ -51,8 +55,10 @@ class ActiveDescendant {
 }
 
 class LinearActiveDescendant extends ActiveDescendant {
-    constructor(el, focusEl, ownedEl, itemSelector) {
+    constructor(el, focusEl, ownedEl, itemSelector, selectedOptions) {
         super(el);
+
+        this._options = Object.assign({}, defaultOptions, selectedOptions);
 
         this._navigationEmitter = NavigationEmitter.createLinear(el, itemSelector, { autoInit: -1, autoReset: -1 });
 
@@ -88,8 +94,8 @@ class GridActiveDescendant extends ActiveDescendant {
 }
 */
 
-function createLinear(el, focusEl, ownedEl, itemSelector) {
-    return new LinearActiveDescendant(el, focusEl, ownedEl, itemSelector);
+function createLinear(el, focusEl, ownedEl, itemSelector, selectedOptions) {
+    return new LinearActiveDescendant(el, focusEl, ownedEl, itemSelector, selectedOptions);
 }
 
 module.exports = {

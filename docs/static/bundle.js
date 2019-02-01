@@ -1065,6 +1065,8 @@ module.exports = {
 });
 $_mod.def("/makeup-active-descendant$0.0.3/index", function(require, exports, module, __filename, __dirname) { 'use strict';
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -1077,6 +1079,10 @@ var NavigationEmitter = require('/makeup-navigation-emitter$0.0.3/index'/*'makeu
 var nextID = require('/makeup-next-id$0.0.1/index'/*'makeup-next-id'*/);
 var Util = require('/makeup-active-descendant$0.0.3/util'/*'./util.js'*/);
 
+var defaultOptions = {
+    activeDescendantClassName: 'active-descendant'
+};
+
 function onModelMutation() {
     var modelIndex = this._navigationEmitter.model.index;
 
@@ -1084,9 +1090,9 @@ function onModelMutation() {
 
     this._items.forEach(function (item, index) {
         if (index !== modelIndex) {
-            item.classList.remove('active-descendant');
+            item.classList.remove(this._options.activeDescendantClassName);
         } else {
-            item.classList.add('active-descendant');
+            item.classList.add(this._options.activeDescendantClassName);
         }
     });
 }
@@ -1096,11 +1102,11 @@ function onModelChange(e) {
     var toItem = this._items[e.detail.toIndex];
 
     if (fromItem) {
-        fromItem.classList.remove('active-descendant');
+        fromItem.classList.remove(this._options.activeDescendantClassName);
     }
 
     if (toItem) {
-        toItem.classList.add('active-descendant');
+        toItem.classList.add(this._options.activeDescendantClassName);
         this._focusEl.setAttribute('aria-activedescendant', toItem.id);
     }
 
@@ -1126,10 +1132,12 @@ var ActiveDescendant = function ActiveDescendant(el) {
 var LinearActiveDescendant = function (_ActiveDescendant) {
     _inherits(LinearActiveDescendant, _ActiveDescendant);
 
-    function LinearActiveDescendant(el, focusEl, ownedEl, itemSelector) {
+    function LinearActiveDescendant(el, focusEl, ownedEl, itemSelector, selectedOptions) {
         _classCallCheck(this, LinearActiveDescendant);
 
         var _this = _possibleConstructorReturn(this, (LinearActiveDescendant.__proto__ || Object.getPrototypeOf(LinearActiveDescendant)).call(this, el));
+
+        _this._options = _extends({}, defaultOptions, selectedOptions);
 
         _this._navigationEmitter = NavigationEmitter.createLinear(el, itemSelector, { autoInit: -1, autoReset: -1 });
 
@@ -1171,8 +1179,8 @@ class GridActiveDescendant extends ActiveDescendant {
 }
 */
 
-function createLinear(el, focusEl, ownedEl, itemSelector) {
-    return new LinearActiveDescendant(el, focusEl, ownedEl, itemSelector);
+function createLinear(el, focusEl, ownedEl, itemSelector, selectedOptions) {
+    return new LinearActiveDescendant(el, focusEl, ownedEl, itemSelector, selectedOptions);
 }
 
 module.exports = {
@@ -1206,7 +1214,9 @@ widgetEls.forEach(function(el) {
         console.log(e);
     });
 
-    navs.push(ActiveDescendant.createLinear(el, el.querySelector('input'), el.querySelector('ul'), 'li'));
+    var widget = ActiveDescendant.createLinear(el, el.querySelector('input'), el.querySelector('ul'), 'li');
+
+    navs.push(widget);
 });
 
 wrapCheckbox.addEventListener('change', function(e) {
