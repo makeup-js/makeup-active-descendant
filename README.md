@@ -35,16 +35,13 @@ const ActiveDescendant = require('makeup-active-descendant');
 const widgetEl = document.querySelector('.widget');
 
 // get the focus element reference
-const inputEl = widgetEl.querySelector('input');
+const focusEl = widgetEl.querySelector('input');
 
 // get the owned element reference
 const ownedEl = widgetEl.querySelector('ul');
 
 // create a roving tabindex instance on the element
 const activeDescendant = ActiveDescendant.createLinear(widgetEl, focusEl, ownedEl, 'li');
-
-// set the active element
-activeDescendant.index = 0;
 
 // listen for events (optional)
 widgetEl.addEventListener('activeDescendantChange', function(e) {
