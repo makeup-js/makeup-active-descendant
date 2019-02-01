@@ -1139,7 +1139,7 @@ concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
 
-concat-stream@1.6.0, concat-stream@^1.4.7, concat-stream@^1.6.0:
+concat-stream@1.6.0, concat-stream@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/concat-stream/-/concat-stream-1.6.0.tgz#0aac662fd52be78964d5532f694784e70110acf7"
   dependencies:
@@ -1211,7 +1211,7 @@ coveralls@^3:
     minimist "^1.2.0"
     request "^2.79.0"
 
-cross-spawn@^5.0.1, cross-spawn@^5.1.0:
+cross-spawn@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
   dependencies:
@@ -2878,29 +2878,34 @@ lru-cache@^4.0.1:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
-makeup-exit-emitter@~0.0:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/makeup-exit-emitter/-/makeup-exit-emitter-0.0.2.tgz#837918e2b216cf0d8d1abec14325d2b565859161"
+makeup-exit-emitter@~0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/makeup-exit-emitter/-/makeup-exit-emitter-0.0.4.tgz#26482e73db3ef6ef5f8ac2c3c21e8197488fd458"
+  integrity sha512-qcfKD3R9fXGlekobtjHIgkyqY4Y2NNP0H1RjPtZMDgf216oKwdvvY7JyxHanuJbjlN/i17A35SXhya6eqhuE2g==
   dependencies:
     custom-event-polyfill "~0.3"
+    makeup-next-id "~0.0"
 
-makeup-key-emitter@~0.0:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/makeup-key-emitter/-/makeup-key-emitter-0.0.2.tgz#86e2e27166fd42a3e55f82b0ad304463b4b86289"
-  dependencies:
-    custom-event-polyfill "~0.3"
-
-makeup-navigation-emitter@~0.0:
+makeup-key-emitter@~0.0.3:
   version "0.0.3"
-  resolved "https://registry.yarnpkg.com/makeup-navigation-emitter/-/makeup-navigation-emitter-0.0.3.tgz#dc6807278044d1af484d7f9c1e5db0938c9bab8d"
+  resolved "https://registry.yarnpkg.com/makeup-key-emitter/-/makeup-key-emitter-0.0.3.tgz#4fe16127cce749a785f4e2538800415d267fd356"
+  integrity sha512-4R+0L5CtfrYuYui4odZcyjDMaVphZxf8Nirz77X0crAzHW2Izf0uVEVOOfi2/R5VwEXuRV/AHVAXp8hoLS0j+A==
+  dependencies:
+    custom-event-polyfill "~0.3"
+
+makeup-navigation-emitter@~0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/makeup-navigation-emitter/-/makeup-navigation-emitter-0.1.0.tgz#c339ff1dcb7e4c4983767c41281d9caeed30cefd"
+  integrity sha512-70wWdV4fdKBeuEAQp28IB180lDKgU7ttuOIeOaPIs5u5ru8kj4Y9X1i4+QWpnyqoLAwgogcTTkWcrxByWz9PFA==
   dependencies:
     custom-event-polyfill "^0.3.0"
-    makeup-exit-emitter "~0.0"
-    makeup-key-emitter "~0.0"
+    makeup-exit-emitter "~0.0.4"
+    makeup-key-emitter "~0.0.3"
 
-makeup-next-id@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/makeup-next-id/-/makeup-next-id-0.0.1.tgz#e4bf4821616c85c96d09631aa166732006468f06"
+makeup-next-id@~0.0, makeup-next-id@~0.0.1:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/makeup-next-id/-/makeup-next-id-0.0.2.tgz#70f19812b0b5cb8d5f0f7f78719179ea4b61a0ef"
+  integrity sha512-nAeDpu/X8Z978mvtj1GnalHNs3ulHOLIpEm2lLAM3SO8KdTDtl4uP3utfW8oYtOZIXaeMhR53JqxFDQ3ZYCZug==
 
 map-obj@^1.0.0, map-obj@^1.0.1:
   version "1.0.1"
@@ -3233,10 +3238,6 @@ os-locale@^1.4.0:
   dependencies:
     lcid "^1.0.0"
 
-os-shim@^0.1.2:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/os-shim/-/os-shim-0.1.3.tgz#6b62c3791cf7909ea35ed46e17658bb417cb3917"
-
 os-tmpdir@^1.0.0, os-tmpdir@^1.0.1, os-tmpdir@~1.0.1, os-tmpdir@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
@@ -3373,14 +3374,6 @@ portscanner@2.1.1:
   dependencies:
     async "1.5.2"
     is-number-like "^1.0.3"
-
-pre-commit@^1:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/pre-commit/-/pre-commit-1.2.2.tgz#dbcee0ee9de7235e57f79c56d7ce94641a69eec6"
-  dependencies:
-    cross-spawn "^5.0.1"
-    spawn-sync "^1.0.15"
-    which "1.2.x"
 
 prelude-ls@~1.1.2:
   version "1.1.2"
@@ -4063,13 +4056,6 @@ source-map@~0.2.0:
   dependencies:
     amdefine ">=0.0.4"
 
-spawn-sync@^1.0.15:
-  version "1.0.15"
-  resolved "https://registry.yarnpkg.com/spawn-sync/-/spawn-sync-1.0.15.tgz#b00799557eb7fb0c8376c29d44e8a1ea67e57476"
-  dependencies:
-    concat-stream "^1.4.7"
-    os-shim "^0.1.2"
-
 spdx-correct@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/spdx-correct/-/spdx-correct-1.0.2.tgz#4b3073d933ff51f3912f03ac5519498a4150db40"
@@ -4462,12 +4448,6 @@ weinre@^2.0.0-pre-I0Z7U9OV:
 which-module@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/which-module/-/which-module-1.0.0.tgz#bba63ca861948994ff307736089e3b96026c2a4f"
-
-which@1.2.x:
-  version "1.2.14"
-  resolved "https://registry.yarnpkg.com/which/-/which-1.2.14.tgz#9a87c4378f03e827cecaf1acdf56c736c01c14e5"
-  dependencies:
-    isexe "^2.0.0"
 
 which@^1.1.1, which@^1.2.10, which@^1.2.9:
   version "1.3.0"
