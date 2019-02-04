@@ -1167,10 +1167,20 @@ function onModelChange(e) {
 
     this._el.dispatchEvent(new CustomEvent('activeDescendantChange', {
         detail: {
-            toIndex: e.detail.toIndex,
-            fromIndex: e.detail.fromIndex
+            fromIndex: e.detail.fromIndex,
+            toIndex: e.detail.toIndex
         }
     }));
+}
+
+function onModelReset() {
+    var activeClassName = this._options.activeDescendantClassName;
+
+    this._items.forEach(function (el) {
+        el.classList.remove(activeClassName);
+    });
+
+    this._focusEl.removeAttribute('aria-activedescendant');
 }
 
 var ActiveDescendant = function ActiveDescendant(el) {
@@ -1179,9 +1189,11 @@ var ActiveDescendant = function ActiveDescendant(el) {
     this._el = el;
     this._onMutationListener = onModelMutation.bind(this);
     this._onChangeListener = onModelChange.bind(this);
+    this._onResetListener = onModelReset.bind(this);
 
     el.addEventListener('navigationModelMutation', this._onMutationListener);
     el.addEventListener('navigationModelChange', this._onChangeListener);
+    el.addEventListener('navigationModelReset', this._onResetListener);
 };
 
 var LinearActiveDescendant = function (_ActiveDescendant) {
@@ -1194,7 +1206,10 @@ var LinearActiveDescendant = function (_ActiveDescendant) {
 
         _this._options = _extends({}, defaultOptions, selectedOptions);
 
-        _this._navigationEmitter = NavigationEmitter.createLinear(el, itemSelector, { autoInit: -1, autoReset: -1 });
+        _this._navigationEmitter = NavigationEmitter.createLinear(el, itemSelector, {
+            autoInit: -1,
+            autoReset: -1
+        });
 
         _this._focusEl = focusEl;
         _this._ownedEl = ownedEl;

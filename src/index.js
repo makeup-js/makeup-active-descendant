@@ -37,10 +37,20 @@ function onModelChange(e) {
 
     this._el.dispatchEvent(new CustomEvent('activeDescendantChange', {
         detail: {
-            toIndex: e.detail.toIndex,
-            fromIndex: e.detail.fromIndex
+            fromIndex: e.detail.fromIndex,
+            toIndex: e.detail.toIndex
         }
     }));
+}
+
+function onModelReset() {
+    const activeClassName = this._options.activeDescendantClassName;
+
+    this._items.forEach(function(el) {
+        el.classList.remove(activeClassName);
+    });
+
+    this._focusEl.removeAttribute('aria-activedescendant');
 }
 
 class ActiveDescendant {
@@ -48,9 +58,11 @@ class ActiveDescendant {
         this._el = el;
         this._onMutationListener = onModelMutation.bind(this);
         this._onChangeListener = onModelChange.bind(this);
+        this._onResetListener = onModelReset.bind(this);
 
         el.addEventListener('navigationModelMutation', this._onMutationListener);
         el.addEventListener('navigationModelChange', this._onChangeListener);
+        el.addEventListener('navigationModelReset', this._onResetListener);
     }
 }
 
@@ -60,7 +72,10 @@ class LinearActiveDescendant extends ActiveDescendant {
 
         this._options = Object.assign({}, defaultOptions, selectedOptions);
 
-        this._navigationEmitter = NavigationEmitter.createLinear(el, itemSelector, { autoInit: -1, autoReset: -1 });
+        this._navigationEmitter = NavigationEmitter.createLinear(el, itemSelector, {
+            autoInit: -1,
+            autoReset: -1
+        });
 
         this._focusEl = focusEl;
         this._ownedEl = ownedEl;
