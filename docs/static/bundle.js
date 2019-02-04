@@ -591,9 +591,9 @@ https://github.com/joyent/node/blob/master/lib/module.js
     }
 })();
 
-$_mod.installed("makeup-active-descendant$0.0.3", "makeup-navigation-emitter", "0.1.0");
-$_mod.main("/makeup-navigation-emitter$0.1.0", "");
-$_mod.installed("makeup-navigation-emitter$0.1.0", "custom-event-polyfill", "0.3.0");
+$_mod.installed("makeup-active-descendant$0.0.3", "makeup-navigation-emitter", "0.1.1");
+$_mod.main("/makeup-navigation-emitter$0.1.1", "");
+$_mod.installed("makeup-navigation-emitter$0.1.1", "custom-event-polyfill", "0.3.0");
 $_mod.main("/custom-event-polyfill$0.3.0", "custom-event-polyfill");
 $_mod.def("/custom-event-polyfill$0.3.0/custom-event-polyfill", function(require, exports, module, __filename, __dirname) { // Polyfill for creating CustomEvents on IE9/10/11
 
@@ -642,7 +642,7 @@ try {
 
 });
 $_mod.run("/custom-event-polyfill$0.3.0/custom-event-polyfill");
-$_mod.def("/makeup-navigation-emitter$0.1.0/util", function(require, exports, module, __filename, __dirname) { "use strict";
+$_mod.def("/makeup-navigation-emitter$0.1.1/util", function(require, exports, module, __filename, __dirname) { "use strict";
 
 function nodeListToArray(nodeList) {
     return Array.prototype.slice.call(nodeList);
@@ -653,7 +653,7 @@ module.exports = {
 };
 
 });
-$_mod.installed("makeup-navigation-emitter$0.1.0", "makeup-key-emitter", "0.0.3");
+$_mod.installed("makeup-navigation-emitter$0.1.1", "makeup-key-emitter", "0.0.3");
 $_mod.main("/makeup-key-emitter$0.0.3", "");
 $_mod.installed("makeup-key-emitter$0.0.3", "custom-event-polyfill", "0.3.0");
 $_mod.def("/makeup-key-emitter$0.0.3/util", function(require, exports, module, __filename, __dirname) { 'use strict';
@@ -765,12 +765,12 @@ module.exports = {
 };
 
 });
-$_mod.installed("makeup-navigation-emitter$0.1.0", "makeup-exit-emitter", "0.0.4");
+$_mod.installed("makeup-navigation-emitter$0.1.1", "makeup-exit-emitter", "0.0.4");
 $_mod.main("/makeup-exit-emitter$0.0.4", "");
 $_mod.installed("makeup-exit-emitter$0.0.4", "custom-event-polyfill", "0.3.0");
-$_mod.installed("makeup-exit-emitter$0.0.4", "makeup-next-id", "0.0.2");
-$_mod.main("/makeup-next-id$0.0.2", "");
-$_mod.def("/makeup-next-id$0.0.2/index", function(require, exports, module, __filename, __dirname) { 'use strict';
+$_mod.installed("makeup-exit-emitter$0.0.4", "makeup-next-id", "0.0.1");
+$_mod.main("/makeup-next-id$0.0.1", "");
+$_mod.def("/makeup-next-id$0.0.1/index", function(require, exports, module, __filename, __dirname) { 'use strict';
 
 var sequenceMap = {};
 var defaultPrefix = 'nid';
@@ -796,7 +796,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var nextID = require('/makeup-next-id$0.0.2/index'/*'makeup-next-id'*/);
+var nextID = require('/makeup-next-id$0.0.1/index'/*'makeup-next-id'*/);
 var focusExitEmitters = {};
 
 // requires CustomEvent polyfill for IE9+
@@ -893,7 +893,7 @@ module.exports = {
 };
 
 });
-$_mod.def("/makeup-navigation-emitter$0.1.0/index", function(require, exports, module, __filename, __dirname) { 'use strict';
+$_mod.def("/makeup-navigation-emitter$0.1.1/index", function(require, exports, module, __filename, __dirname) { 'use strict';
 
 // requires Object.assign polyfill or transform for IE
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Polyfill
@@ -908,7 +908,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Util = require('/makeup-navigation-emitter$0.1.0/util'/*'./util.js'*/);
+var Util = require('/makeup-navigation-emitter$0.1.1/util'/*'./util.js'*/);
 var KeyEmitter = require('/makeup-key-emitter$0.0.3/index'/*'makeup-key-emitter'*/);
 var ExitEmitter = require('/makeup-exit-emitter$0.0.4/index'/*'makeup-exit-emitter'*/);
 var dataSetKey = 'data-makeup-index';
@@ -946,12 +946,14 @@ function onClick(e) {
     var indexData = element.dataset.makeupIndex;
 
     // traverse ancestors until interactive element is found
-    while (!indexData) {
+    while (element.tagName.toLowerCase() !== 'body' && !indexData) {
         element = element.parentNode;
         indexData = element.dataset.makeupIndex;
     }
 
-    this.index = indexData;
+    if (indexData !== undefined) {
+        this.index = indexData;
+    }
 }
 
 function onKeyHome() {
@@ -1107,6 +1109,27 @@ module.exports = NavigationEmitter;
 
 });
 $_mod.installed("makeup-active-descendant$0.0.3", "makeup-next-id", "0.0.2");
+$_mod.main("/makeup-next-id$0.0.2", "");
+$_mod.def("/makeup-next-id$0.0.2/index", function(require, exports, module, __filename, __dirname) { 'use strict';
+
+var sequenceMap = {};
+var defaultPrefix = 'nid';
+
+module.exports = function (el) {
+    var prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultPrefix;
+
+    // prevent empty string
+    var _prefix = prefix === '' ? defaultPrefix : prefix;
+
+    // initialise prefix in sequence map if necessary
+    sequenceMap[_prefix] = sequenceMap[_prefix] || 0;
+
+    if (!el.id) {
+        el.setAttribute('id', _prefix + '-' + sequenceMap[_prefix]++);
+    }
+};
+
+});
 $_mod.def("/makeup-active-descendant$0.0.3/util", function(require, exports, module, __filename, __dirname) { "use strict";
 
 function nodeListToArray(nodeList) {
@@ -1130,7 +1153,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var NavigationEmitter = require('/makeup-navigation-emitter$0.1.0/index'/*'makeup-navigation-emitter'*/);
+var NavigationEmitter = require('/makeup-navigation-emitter$0.1.1/index'/*'makeup-navigation-emitter'*/);
 var nextID = require('/makeup-next-id$0.0.2/index'/*'makeup-next-id'*/);
 var Util = require('/makeup-active-descendant$0.0.3/util'/*'./util.js'*/);
 

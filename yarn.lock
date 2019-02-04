@@ -2893,10 +2893,10 @@ makeup-key-emitter@~0.0.3:
   dependencies:
     custom-event-polyfill "~0.3"
 
-makeup-navigation-emitter@~0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/makeup-navigation-emitter/-/makeup-navigation-emitter-0.1.0.tgz#c339ff1dcb7e4c4983767c41281d9caeed30cefd"
-  integrity sha512-70wWdV4fdKBeuEAQp28IB180lDKgU7ttuOIeOaPIs5u5ru8kj4Y9X1i4+QWpnyqoLAwgogcTTkWcrxByWz9PFA==
+makeup-navigation-emitter@~0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/makeup-navigation-emitter/-/makeup-navigation-emitter-0.1.1.tgz#4994b42ddc297fa9f00634a970278418b39a8d0e"
+  integrity sha512-PQ9sMumzulwjPDJn9CC9NOWG23EjvVR1vyx5NuMfb8zK/CVoSMp731wJJvFU8Q6kkC3UonNxYhCuNvH8MlLM1g==
   dependencies:
     custom-event-polyfill "^0.3.0"
     makeup-exit-emitter "~0.0.4"

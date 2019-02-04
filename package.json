@@ -48,7 +48,7 @@
     "rimraf": "^2"
   },
   "dependencies": {
-    "makeup-navigation-emitter": "~0.1.0",
+    "makeup-navigation-emitter": "~0.1.1",
     "makeup-next-id": "~0.0.1"
   },
   "files": [
