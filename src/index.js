@@ -5,7 +5,9 @@ const nextID = require('makeup-next-id');
 const Util = require('./util.js');
 
 const defaultOptions = {
-    activeDescendantClassName: 'active-descendant'
+    activeDescendantClassName: 'active-descendant',
+    autoInit: -1,
+    autoReset: -1
 };
 
 function onModelMutation() {
@@ -29,10 +31,12 @@ function onModelChange(e) {
 
     if (fromItem) {
         fromItem.classList.remove(this._options.activeDescendantClassName);
+        fromItem.removeAttribute('aria-selected');
     }
 
     if (toItem) {
         toItem.classList.add(this._options.activeDescendantClassName);
+        toItem.setAttribute('aria-selected', 'true');
         this._focusEl.setAttribute('aria-activedescendant', toItem.id);
     }
 
@@ -49,9 +53,18 @@ function onModelReset() {
 
     this._items.forEach(function(el) {
         el.classList.remove(activeClassName);
+        el.removeAttribute('aria-selected');
     });
 
-    this._focusEl.removeAttribute('aria-activedescendant');
+    if (this._options.autoReset > -1) {
+        const itemEl = this._items[this._options.autoReset];
+
+        itemEl.classList.add(this._options.activeDescendantClassName);
+        itemEl.setAttribute('aria-selected', 'true');
+        this._focusEl.setAttribute('aria-activedescendant', itemEl.id);
+    } else {
+        this._focusEl.removeAttribute('aria-activedescendant');
+    }
 }
 
 class ActiveDescendant {
@@ -74,8 +87,8 @@ class LinearActiveDescendant extends ActiveDescendant {
         this._options = Object.assign({}, defaultOptions, selectedOptions);
 
         this._navigationEmitter = NavigationEmitter.createLinear(el, itemSelector, {
-            autoInit: -1,
-            autoReset: -1
+            autoInit: this._options.autoInit,
+            autoReset: this._options.autoReset
         });
 
         this._focusEl = focusEl;
@@ -95,6 +108,14 @@ class LinearActiveDescendant extends ActiveDescendant {
         this._items.forEach(function(itemEl) {
             nextID(itemEl);
         });
+
+        if (this._options.autoInit > -1) {
+            const itemEl = this._items[this._options.autoInit];
+
+            itemEl.classList.add(this._options.activeDescendantClassName);
+            itemEl.setAttribute('aria-selected', 'true');
+            this._focusEl.setAttribute('aria-activedescendant', itemEl.id);
+        }
     }
 
     set wrap(newWrap) {

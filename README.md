@@ -99,8 +99,10 @@ Use CSS to style the active descendant however you wish:
 ## Options
 
 * `activeDescendantClassName`: the HTML class name that will be applied to the ARIA active descendant element (default: 'active-descendant')
+* `autoInit`: specify an integer or -1 for initial index (default: 0) (see [`makeup-navigation-emitter`](https://github.com/makeup-js/makeup-navigation-emitter#options))
+* `autoReset`: specify an integer or -1 for index position when focus exits widget (default: null) (see [`makeup-navigation-emitter`](https://github.com/makeup-js/makeup-navigation-emitter#options))
 
-## Custom Events        
+## Custom Events
 
 * `activeDescendantChange`
     * detail

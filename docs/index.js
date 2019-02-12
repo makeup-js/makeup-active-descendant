@@ -24,7 +24,27 @@ widgetEls.forEach(function(el) {
         console.log(e);
     });
 
-    var widget = ActiveDescendant.createLinear(el, el.querySelector('input'), el.querySelector('ul'), 'li');
+    var options = {};
+
+    if (el.dataset.makeupInit !== undefined) {
+        options.autoInit = el.dataset.makeupInit;
+    }
+
+    if (el.dataset.makeupReset !== undefined) {
+        if (el.dataset.makeupReset === "null") {
+            options.autoReset = null;
+        } else {
+            options.autoReset = el.dataset.makeupReset;
+        }
+    }
+
+    var widget = ActiveDescendant.createLinear(
+        el,
+        el.querySelector('input') || el.querySelector('ul'),
+        el.querySelector('ul'),
+        'li',
+        options
+    );
 
     navs.push(widget);
 });
