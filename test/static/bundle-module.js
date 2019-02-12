@@ -1,4 +1,4 @@
-$_mod.installed("makeup-active-descendant$0.0.5", "makeup-navigation-emitter", "0.1.2");
+$_mod.installed("makeup-active-descendant$0.0.6", "makeup-navigation-emitter", "0.1.2");
 $_mod.main("/makeup-navigation-emitter$0.1.2", "");
 $_mod.installed("makeup-navigation-emitter$0.1.2", "custom-event-polyfill", "0.3.0");
 $_mod.main("/custom-event-polyfill$0.3.0", "custom-event-polyfill");
@@ -514,7 +514,7 @@ var NavigationEmitter = function () {
 module.exports = NavigationEmitter;
 
 });
-$_mod.installed("makeup-active-descendant$0.0.5", "makeup-next-id", "0.0.2");
+$_mod.installed("makeup-active-descendant$0.0.6", "makeup-next-id", "0.0.2");
 $_mod.main("/makeup-next-id$0.0.2", "");
 $_mod.def("/makeup-next-id$0.0.2/index", function(require, exports, module, __filename, __dirname) { 'use strict';
 
@@ -536,7 +536,7 @@ module.exports = function (el) {
 };
 
 });
-$_mod.def("/makeup-active-descendant$0.0.5/util", function(require, exports, module, __filename, __dirname) { "use strict";
+$_mod.def("/makeup-active-descendant$0.0.6/util", function(require, exports, module, __filename, __dirname) { "use strict";
 
 function nodeListToArray(nodeList) {
     return Array.prototype.slice.call(nodeList);
@@ -547,7 +547,7 @@ module.exports = {
 };
 
 });
-$_mod.def("/makeup-active-descendant$0.0.5/index", function(require, exports, module, __filename, __dirname) { 'use strict';
+$_mod.def("/makeup-active-descendant$0.0.6/index", function(require, exports, module, __filename, __dirname) { 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -561,7 +561,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var NavigationEmitter = require('/makeup-navigation-emitter$0.1.2/index'/*'makeup-navigation-emitter'*/);
 var nextID = require('/makeup-next-id$0.0.2/index'/*'makeup-next-id'*/);
-var Util = require('/makeup-active-descendant$0.0.5/util'/*'./util.js'*/);
+var Util = require('/makeup-active-descendant$0.0.6/util'/*'./util.js'*/);
 
 var defaultOptions = {
     activeDescendantClassName: 'active-descendant',
