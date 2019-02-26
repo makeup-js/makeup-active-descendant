@@ -768,9 +768,9 @@ module.exports = {
 $_mod.installed("makeup-navigation-emitter$0.1.2", "makeup-exit-emitter", "0.0.4");
 $_mod.main("/makeup-exit-emitter$0.0.4", "");
 $_mod.installed("makeup-exit-emitter$0.0.4", "custom-event-polyfill", "0.3.0");
-$_mod.installed("makeup-exit-emitter$0.0.4", "makeup-next-id", "0.0.1");
-$_mod.main("/makeup-next-id$0.0.1", "");
-$_mod.def("/makeup-next-id$0.0.1/index", function(require, exports, module, __filename, __dirname) { 'use strict';
+$_mod.installed("makeup-exit-emitter$0.0.4", "makeup-next-id", "0.0.2");
+$_mod.main("/makeup-next-id$0.0.2", "");
+$_mod.def("/makeup-next-id$0.0.2/index", function(require, exports, module, __filename, __dirname) { 'use strict';
 
 var sequenceMap = {};
 var defaultPrefix = 'nid';
@@ -796,7 +796,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var nextID = require('/makeup-next-id$0.0.1/index'/*'makeup-next-id'*/);
+var nextID = require('/makeup-next-id$0.0.2/index'/*'makeup-next-id'*/);
 var focusExitEmitters = {};
 
 // requires CustomEvent polyfill for IE9+
@@ -1109,27 +1109,6 @@ module.exports = NavigationEmitter;
 
 });
 $_mod.installed("makeup-active-descendant$0.0.6", "makeup-next-id", "0.0.2");
-$_mod.main("/makeup-next-id$0.0.2", "");
-$_mod.def("/makeup-next-id$0.0.2/index", function(require, exports, module, __filename, __dirname) { 'use strict';
-
-var sequenceMap = {};
-var defaultPrefix = 'nid';
-
-module.exports = function (el) {
-    var prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultPrefix;
-
-    // prevent empty string
-    var _prefix = prefix === '' ? defaultPrefix : prefix;
-
-    // initialise prefix in sequence map if necessary
-    sequenceMap[_prefix] = sequenceMap[_prefix] || 0;
-
-    if (!el.id) {
-        el.setAttribute('id', _prefix + '-' + sequenceMap[_prefix]++);
-    }
-};
-
-});
 $_mod.def("/makeup-active-descendant$0.0.6/util", function(require, exports, module, __filename, __dirname) { "use strict";
 
 function nodeListToArray(nodeList) {
