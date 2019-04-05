@@ -74,9 +74,15 @@ class ActiveDescendant {
         this._onChangeListener = onModelChange.bind(this);
         this._onResetListener = onModelReset.bind(this);
 
-        el.addEventListener('navigationModelMutation', this._onMutationListener);
-        el.addEventListener('navigationModelChange', this._onChangeListener);
-        el.addEventListener('navigationModelReset', this._onResetListener);
+        this._el.addEventListener('navigationModelMutation', this._onMutationListener);
+        this._el.addEventListener('navigationModelChange', this._onChangeListener);
+        this._el.addEventListener('navigationModelReset', this._onResetListener);
+    }
+
+    destroy() {
+        this._el.removeEventListener('navigationModelMutation', this._onMutationListener);
+        this._el.removeEventListener('navigationModelChange', this._onChangeListener);
+        this._el.removeEventListener('navigationModelReset', this._onResetListener);
     }
 }
 
@@ -118,8 +124,33 @@ class LinearActiveDescendant extends ActiveDescendant {
         }
     }
 
+    set _items(items) {
+        return items;
+    }
+
+    get _items() {
+        return this._items.forEach(function(itemEl) {
+            if (!document.body.contains(itemEl)) console.warn("The owned element was removed!");
+            return itemEl;
+        });
+    }
+
+    set _ownedEl(el) {
+        return el;
+    }
+
+    get _ownedEl() {
+        if (!document.body.contains(this._ownedEl)) console.warn("The owned element was removed!");
+        return this._ownedEl;
+    }
+
     set wrap(newWrap) {
         this._navigationEmitter.model.options.wrap = newWrap;
+    }
+
+    destroy() {
+        super.destroy();
+        this._navigationEmitter.destroy();
     }
 }
 
