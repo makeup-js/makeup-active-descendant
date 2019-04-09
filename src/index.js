@@ -107,9 +107,6 @@ class LinearActiveDescendant extends ActiveDescendant {
         // focus element must programatically 'own' the container of descendant items
         focusEl.setAttribute('aria-owns', ownedEl.id);
 
-        // cache the array of items that will be navigated
-        this._items = Util.nodeListToArray(ownedEl.querySelectorAll(itemSelector));
-
         // ensure each item has an id
         this._items.forEach(function(itemEl) {
             nextID(itemEl);
@@ -124,24 +121,8 @@ class LinearActiveDescendant extends ActiveDescendant {
         }
     }
 
-    set _items(items) {
-        return items;
-    }
-
     get _items() {
-        return this._items.forEach(function(itemEl) {
-            if (!document.body.contains(itemEl)) console.warn("The owned element was removed!");
-            return itemEl;
-        });
-    }
-
-    set _ownedEl(el) {
-        return el;
-    }
-
-    get _ownedEl() {
-        if (!document.body.contains(this._ownedEl)) console.warn("The owned element was removed!");
-        return this._ownedEl;
+        return Util.nodeListToArray(this._ownedEl.querySelectorAll(this._itemSelector));
     }
 
     set wrap(newWrap) {

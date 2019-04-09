@@ -130,9 +130,6 @@ var LinearActiveDescendant = function (_ActiveDescendant) {
         // focus element must programatically 'own' the container of descendant items
         focusEl.setAttribute('aria-owns', ownedEl.id);
 
-        // cache the array of items that will be navigated
-        _this._items = Util.nodeListToArray(ownedEl.querySelectorAll(itemSelector));
-
         // ensure each item has an id
         _this._items.forEach(function (itemEl) {
             nextID(itemEl);
@@ -156,23 +153,8 @@ var LinearActiveDescendant = function (_ActiveDescendant) {
         }
     }, {
         key: '_items',
-        set: function set(items) {
-            return items;
-        },
         get: function get() {
-            return this._items.forEach(function (itemEl) {
-                if (!document.body.contains(itemEl)) console.warn("The owned element was removed!");
-                return itemEl;
-            });
-        }
-    }, {
-        key: '_ownedEl',
-        set: function set(el) {
-            return el;
-        },
-        get: function get() {
-            if (!document.body.contains(this._ownedEl)) console.warn("The owned element was removed!");
-            return this._ownedEl;
+            return Util.nodeListToArray(this._ownedEl.querySelectorAll(this._itemSelector));
         }
     }, {
         key: 'wrap',
