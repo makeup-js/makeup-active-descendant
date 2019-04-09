@@ -14,8 +14,6 @@ function onModelMutation() {
     const options = this._options;
     const modelIndex = this._navigationEmitter.model.index;
 
-    this._items = Util.nodeListToArray(this._el.querySelectorAll(this._itemSelector));
-
     this._items.forEach(function(item, index) {
         if (index !== modelIndex) {
             item.classList.remove(options.activeDescendantClassName);
