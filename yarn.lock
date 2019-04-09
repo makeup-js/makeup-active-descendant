@@ -1244,7 +1244,12 @@ currently-unhandled@^0.4.1:
   dependencies:
     array-find-index "^1.0.1"
 
-custom-event-polyfill@^0.3.0, custom-event-polyfill@~0.3:
+custom-event-polyfill@^1:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/custom-event-polyfill/-/custom-event-polyfill-1.0.7.tgz#9bc993ddda937c1a30ccd335614c6c58c4f87aee"
+  integrity sha512-TDDkd5DkaZxZFM8p+1I3yAlvM3rSr1wbrOliG4yJiwinMZN8z/iGL7BTlDkrJcYTmgUSb4ywVCc3ZaUtOtC76w==
+
+custom-event-polyfill@~0.3:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/custom-event-polyfill/-/custom-event-polyfill-0.3.0.tgz#99807839be62edb446b645832e0d80ead6fa1888"
 
@@ -2893,12 +2898,12 @@ makeup-key-emitter@~0.0.3:
   dependencies:
     custom-event-polyfill "~0.3"
 
-makeup-navigation-emitter@~0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/makeup-navigation-emitter/-/makeup-navigation-emitter-0.1.2.tgz#f2915d23b3255e66a7e1c1874739400f366e2d88"
-  integrity sha512-Js7paumdax/xqt0Zd/eGzFXnCzkLOnXirOmfngJop0AvxJMDZjWB5cRhD0dOV4UNdVB0N5qMXPN2ER+1ACSeYQ==
+makeup-navigation-emitter@~0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/makeup-navigation-emitter/-/makeup-navigation-emitter-0.1.3.tgz#c0e28fdca9fa72f31c46e15f58593b6e2acf1607"
+  integrity sha512-Ibf2rskPkgo4ym7tubtjirH4dddOkRHRT3OQ76xxnw6cNYmCTDI4Jcu6ZW7jNUBpa4GSepkUpKhe7J7Dp4pS5g==
   dependencies:
-    custom-event-polyfill "^0.3.0"
+    custom-event-polyfill "^1"
     makeup-exit-emitter "~0.0.4"
     makeup-key-emitter "~0.0.3"
 
