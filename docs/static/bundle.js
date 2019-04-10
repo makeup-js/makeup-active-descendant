@@ -1124,6 +1124,8 @@ $_mod.def("/makeup-active-descendant$0.0.6/index", function(require, exports, mo
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -1145,8 +1147,6 @@ var defaultOptions = {
 function onModelMutation() {
     var options = this._options;
     var modelIndex = this._navigationEmitter.model.index;
-
-    this._items = Util.nodeListToArray(this._el.querySelectorAll(this._itemSelector));
 
     this._items.forEach(function (item, index) {
         if (index !== modelIndex) {
@@ -1199,18 +1199,31 @@ function onModelReset() {
     }
 }
 
-var ActiveDescendant = function ActiveDescendant(el) {
-    _classCallCheck(this, ActiveDescendant);
+var ActiveDescendant = function () {
+    function ActiveDescendant(el) {
+        _classCallCheck(this, ActiveDescendant);
 
-    this._el = el;
-    this._onMutationListener = onModelMutation.bind(this);
-    this._onChangeListener = onModelChange.bind(this);
-    this._onResetListener = onModelReset.bind(this);
+        this._el = el;
+        this._onMutationListener = onModelMutation.bind(this);
+        this._onChangeListener = onModelChange.bind(this);
+        this._onResetListener = onModelReset.bind(this);
 
-    el.addEventListener('navigationModelMutation', this._onMutationListener);
-    el.addEventListener('navigationModelChange', this._onChangeListener);
-    el.addEventListener('navigationModelReset', this._onResetListener);
-};
+        this._el.addEventListener('navigationModelMutation', this._onMutationListener);
+        this._el.addEventListener('navigationModelChange', this._onChangeListener);
+        this._el.addEventListener('navigationModelReset', this._onResetListener);
+    }
+
+    _createClass(ActiveDescendant, [{
+        key: 'destroy',
+        value: function destroy() {
+            this._el.removeEventListener('navigationModelMutation', this._onMutationListener);
+            this._el.removeEventListener('navigationModelChange', this._onChangeListener);
+            this._el.removeEventListener('navigationModelReset', this._onResetListener);
+        }
+    }]);
+
+    return ActiveDescendant;
+}();
 
 var LinearActiveDescendant = function (_ActiveDescendant) {
     _inherits(LinearActiveDescendant, _ActiveDescendant);
@@ -1237,9 +1250,6 @@ var LinearActiveDescendant = function (_ActiveDescendant) {
         // focus element must programatically 'own' the container of descendant items
         focusEl.setAttribute('aria-owns', ownedEl.id);
 
-        // cache the array of items that will be navigated
-        _this._items = Util.nodeListToArray(ownedEl.querySelectorAll(itemSelector));
-
         // ensure each item has an id
         _this._items.forEach(function (itemEl) {
             nextID(itemEl);
@@ -1256,6 +1266,17 @@ var LinearActiveDescendant = function (_ActiveDescendant) {
     }
 
     _createClass(LinearActiveDescendant, [{
+        key: 'destroy',
+        value: function destroy() {
+            _get(LinearActiveDescendant.prototype.__proto__ || Object.getPrototypeOf(LinearActiveDescendant.prototype), 'destroy', this).call(this);
+            this._navigationEmitter.destroy();
+        }
+    }, {
+        key: '_items',
+        get: function get() {
+            return Util.nodeListToArray(this._ownedEl.querySelectorAll(this._itemSelector));
+        }
+    }, {
         key: 'wrap',
         set: function set(newWrap) {
             this._navigationEmitter.model.options.wrap = newWrap;

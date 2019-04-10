@@ -14,8 +14,6 @@ function onModelMutation() {
     const options = this._options;
     const modelIndex = this._navigationEmitter.model.index;
 
-    this._items = Util.nodeListToArray(this._el.querySelectorAll(this._itemSelector));
-
     this._items.forEach(function(item, index) {
         if (index !== modelIndex) {
             item.classList.remove(options.activeDescendantClassName);
@@ -74,9 +72,15 @@ class ActiveDescendant {
         this._onChangeListener = onModelChange.bind(this);
         this._onResetListener = onModelReset.bind(this);
 
-        el.addEventListener('navigationModelMutation', this._onMutationListener);
-        el.addEventListener('navigationModelChange', this._onChangeListener);
-        el.addEventListener('navigationModelReset', this._onResetListener);
+        this._el.addEventListener('navigationModelMutation', this._onMutationListener);
+        this._el.addEventListener('navigationModelChange', this._onChangeListener);
+        this._el.addEventListener('navigationModelReset', this._onResetListener);
+    }
+
+    destroy() {
+        this._el.removeEventListener('navigationModelMutation', this._onMutationListener);
+        this._el.removeEventListener('navigationModelChange', this._onChangeListener);
+        this._el.removeEventListener('navigationModelReset', this._onResetListener);
     }
 }
 
@@ -101,9 +105,6 @@ class LinearActiveDescendant extends ActiveDescendant {
         // focus element must programatically 'own' the container of descendant items
         focusEl.setAttribute('aria-owns', ownedEl.id);
 
-        // cache the array of items that will be navigated
-        this._items = Util.nodeListToArray(ownedEl.querySelectorAll(itemSelector));
-
         // ensure each item has an id
         this._items.forEach(function(itemEl) {
             nextID(itemEl);
@@ -118,8 +119,17 @@ class LinearActiveDescendant extends ActiveDescendant {
         }
     }
 
+    get _items() {
+        return Util.nodeListToArray(this._ownedEl.querySelectorAll(this._itemSelector));
+    }
+
     set wrap(newWrap) {
         this._navigationEmitter.model.options.wrap = newWrap;
+    }
+
+    destroy() {
+        super.destroy();
+        this._navigationEmitter.destroy();
     }
 }
 
