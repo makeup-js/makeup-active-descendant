@@ -1,4 +1,4 @@
-describe("makeup-active-descendant", function() {
+describe('makeup-active-descendant', function() {
     var ActiveDescendant = require('../index.js');
     var dom = '<div class="widget">'
                 + '<input/>'
@@ -12,7 +12,7 @@ describe("makeup-active-descendant", function() {
     document.body.innerHTML = dom;
 
     describe('when module is imported', function() {
-        it("module should not be undefined", function() {
+        it('module should not be undefined', function() {
             expect(ActiveDescendant).not.toEqual(undefined);
         });
     });
