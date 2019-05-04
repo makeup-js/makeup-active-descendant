@@ -14,6 +14,11 @@ module.exports = function (config) {
     // list of files / patterns to load in the browser
     files: [
       'test/static/lasso-client.js',
+      'test/static/custom-event-polyfill.js',
+      'test/static/makeup-next-id.js',
+      'test/static/makeup-key-emitter.js',
+      'test/static/makeup-exit-emitter.js',
+      'test/static/makeup-navigation-emitter.js',
       'test/static/bundle-module.js',
       'test/static/bundle-test.js',
       'test/ready.js'
@@ -61,7 +66,7 @@ module.exports = function (config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],
+    browsers: ['ChromeHeadless'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits

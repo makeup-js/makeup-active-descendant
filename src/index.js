@@ -2,7 +2,6 @@
 
 const NavigationEmitter = require('makeup-navigation-emitter');
 const nextID = require('makeup-next-id');
-const Util = require('./util.js');
 
 const defaultOptions = {
     activeDescendantClassName: 'active-descendant',
@@ -120,7 +119,7 @@ class LinearActiveDescendant extends ActiveDescendant {
     }
 
     get _items() {
-        return Util.nodeListToArray(this._ownedEl.querySelectorAll(this._itemSelector));
+        return this._ownedEl.querySelectorAll(this._itemSelector);
     }
 
     set wrap(newWrap) {

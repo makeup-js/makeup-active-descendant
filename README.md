@@ -114,6 +114,11 @@ Use CSS to style the active descendant however you wish:
 * `makeup-navigation-emitter`
 * `makeup-next-id`
 
+## Requirements
+
+* CustomEvent polyfill for IE11 (included if bundling with Lasso)
+* NodeList.forEach polyfill for IE11 (included if bundling with Lasso)
+
 ## Development
 
 * `npm start`
@@ -122,11 +127,6 @@ Use CSS to style the active descendant however you wish:
 * `npm run fix`
 * `npm run build`
 * `npm run clean`
-
-The following hooks exist, and do not need to be invoked manually:
-
-* `npm prepublishOnly` cleans, lints, tests and builds on every `npm publish` command
-* `pre-commit` cleans, lints, tests and builds on every `git commit` command
 
 ## Test Reports
 

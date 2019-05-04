@@ -1,5 +1,7 @@
 {
   "dependencies":[
+    "require-run: custom-event-polyfill",
+    "require-run: nodelist-foreach-polyfill",
     "require: ./index.js"
   ]
 }

@@ -9,6 +9,36 @@
       ]
     },
     {
+      "name": "custom-event-polyfill",
+      "dependencies": [
+        "require: custom-event-polyfill"
+      ]
+    },
+    {
+      "name": "makeup-next-id",
+      "dependencies": [
+        "require: makeup-next-id"
+      ]
+    },
+    {
+      "name": "makeup-key-emitter",
+      "dependencies": [
+        "require: makeup-key-emitter"
+      ]
+    },
+    {
+      "name": "makeup-exit-emitter",
+      "dependencies": [
+        "require: makeup-exit-emitter"
+      ]
+    },
+    {
+      "name": "makeup-navigation-emitter",
+      "dependencies": [
+        "require: makeup-navigation-emitter"
+      ]
+    },
+    {
       "name": "bundle-module",
       "dependencies": [
         "require: ../index.js"
