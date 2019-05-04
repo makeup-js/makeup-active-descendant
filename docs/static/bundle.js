@@ -591,7 +591,7 @@ https://github.com/joyent/node/blob/master/lib/module.js
     }
 })();
 
-$_mod.installed("makeup-active-descendant$0.0.7", "custom-event-polyfill", "1.0.7");
+$_mod.installed("makeup-active-descendant$0.1.0", "custom-event-polyfill", "1.0.7");
 $_mod.main("/custom-event-polyfill$1.0.7", "polyfill");
 $_mod.def("/custom-event-polyfill$1.0.7/polyfill", function(require, exports, module, __filename, __dirname) { // Polyfill for creating CustomEvents on IE9/10/11
 
@@ -649,7 +649,7 @@ $_mod.def("/custom-event-polyfill$1.0.7/polyfill", function(require, exports, mo
 
 });
 $_mod.run("/custom-event-polyfill$1.0.7/polyfill");
-$_mod.installed("makeup-active-descendant$0.0.7", "nodelist-foreach-polyfill", "1.2.0");
+$_mod.installed("makeup-active-descendant$0.1.0", "nodelist-foreach-polyfill", "1.2.0");
 $_mod.main("/nodelist-foreach-polyfill$1.2.0", "");
 $_mod.def("/nodelist-foreach-polyfill$1.2.0/index", function(require, exports, module, __filename, __dirname) { if (window.NodeList && !NodeList.prototype.forEach) {
     NodeList.prototype.forEach = function (callback, thisArg) {
@@ -662,7 +662,7 @@ $_mod.def("/nodelist-foreach-polyfill$1.2.0/index", function(require, exports, m
 
 });
 $_mod.run("/nodelist-foreach-polyfill$1.2.0/index");
-$_mod.installed("makeup-active-descendant$0.0.7", "makeup-navigation-emitter", "0.2.0");
+$_mod.installed("makeup-active-descendant$0.1.0", "makeup-navigation-emitter", "0.2.0");
 $_mod.main("/makeup-navigation-emitter$0.2.0", "");
 $_mod.installed("makeup-navigation-emitter$0.2.0", "custom-event-polyfill", "1.0.7");
 $_mod.installed("makeup-navigation-emitter$0.2.0", "nodelist-foreach-polyfill", "1.2.0");
@@ -1153,8 +1153,8 @@ function () {
 module.exports = NavigationEmitter;
 
 });
-$_mod.installed("makeup-active-descendant$0.0.7", "makeup-next-id", "0.0.2");
-$_mod.def("/makeup-active-descendant$0.0.7/index", function(require, exports, module, __filename, __dirname) { 'use strict';
+$_mod.installed("makeup-active-descendant$0.1.0", "makeup-next-id", "0.0.2");
+$_mod.def("/makeup-active-descendant$0.1.0/index", function(require, exports, module, __filename, __dirname) { 'use strict';
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -1356,10 +1356,10 @@ module.exports = {
 };
 
 });
-$_mod.def("/makeup-active-descendant$0.0.7/docs/index", function(require, exports, module, __filename, __dirname) { "use strict";
+$_mod.def("/makeup-active-descendant$0.1.0/docs/index", function(require, exports, module, __filename, __dirname) { "use strict";
 
 /* eslint-disable no-console */
-var ActiveDescendant = require('/makeup-active-descendant$0.0.7/index'/*'../index.js'*/);
+var ActiveDescendant = require('/makeup-active-descendant$0.1.0/index'/*'../index.js'*/);
 
 function nodeListToArray(nodeList) {
   return Array.prototype.slice.call(nodeList);
@@ -1404,4 +1404,4 @@ wrapCheckbox.addEventListener('change', function (e) {
 });
 
 });
-$_mod.run("/makeup-active-descendant$0.0.7/docs/index");
+$_mod.run("/makeup-active-descendant$0.1.0/docs/index");
