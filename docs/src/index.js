@@ -2,13 +2,9 @@
 
 const ActiveDescendant = require('../index.js');
 
-function nodeListToArray(nodeList) {
-    return Array.prototype.slice.call(nodeList);
-}
-
 const navs = [];
 const appender = document.getElementById('appender');
-const widgetEls = nodeListToArray(document.querySelectorAll('.widget'));
+const widgetEls = document.querySelectorAll('.widget');
 const wrapCheckbox = document.getElementById('wrap');
 
 appender.addEventListener('click', function() {

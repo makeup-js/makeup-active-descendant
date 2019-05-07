@@ -591,6 +591,19 @@ https://github.com/joyent/node/blob/master/lib/module.js
     }
 })();
 
+$_mod.installed("makeup-active-descendant$0.1.0", "nodelist-foreach-polyfill", "1.2.0");
+$_mod.main("/nodelist-foreach-polyfill$1.2.0", "");
+$_mod.def("/nodelist-foreach-polyfill$1.2.0/index", function(require, exports, module, __filename, __dirname) { if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = function (callback, thisArg) {
+        thisArg = thisArg || window;
+        for (var i = 0; i < this.length; i++) {
+            callback.call(thisArg, this[i], i, this);
+        }
+    };
+}
+
+});
+$_mod.run("/nodelist-foreach-polyfill$1.2.0/index");
 $_mod.installed("makeup-active-descendant$0.1.0", "custom-event-polyfill", "1.0.7");
 $_mod.main("/custom-event-polyfill$1.0.7", "polyfill");
 $_mod.def("/custom-event-polyfill$1.0.7/polyfill", function(require, exports, module, __filename, __dirname) { // Polyfill for creating CustomEvents on IE9/10/11
@@ -649,19 +662,6 @@ $_mod.def("/custom-event-polyfill$1.0.7/polyfill", function(require, exports, mo
 
 });
 $_mod.run("/custom-event-polyfill$1.0.7/polyfill");
-$_mod.installed("makeup-active-descendant$0.1.0", "nodelist-foreach-polyfill", "1.2.0");
-$_mod.main("/nodelist-foreach-polyfill$1.2.0", "");
-$_mod.def("/nodelist-foreach-polyfill$1.2.0/index", function(require, exports, module, __filename, __dirname) { if (window.NodeList && !NodeList.prototype.forEach) {
-    NodeList.prototype.forEach = function (callback, thisArg) {
-        thisArg = thisArg || window;
-        for (var i = 0; i < this.length; i++) {
-            callback.call(thisArg, this[i], i, this);
-        }
-    };
-}
-
-});
-$_mod.run("/nodelist-foreach-polyfill$1.2.0/index");
 $_mod.installed("makeup-active-descendant$0.1.0", "makeup-navigation-emitter", "0.2.0");
 $_mod.main("/makeup-navigation-emitter$0.2.0", "");
 $_mod.installed("makeup-navigation-emitter$0.2.0", "custom-event-polyfill", "1.0.7");
@@ -1361,13 +1361,9 @@ $_mod.def("/makeup-active-descendant$0.1.0/docs/index", function(require, export
 /* eslint-disable no-console */
 var ActiveDescendant = require('/makeup-active-descendant$0.1.0/index'/*'../index.js'*/);
 
-function nodeListToArray(nodeList) {
-  return Array.prototype.slice.call(nodeList);
-}
-
 var navs = [];
 var appender = document.getElementById('appender');
-var widgetEls = nodeListToArray(document.querySelectorAll('.widget'));
+var widgetEls = document.querySelectorAll('.widget');
 var wrapCheckbox = document.getElementById('wrap');
 appender.addEventListener('click', function () {
   widgetEls.forEach(function (el) {

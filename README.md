@@ -111,13 +111,13 @@ Use CSS to style the active descendant however you wish:
 
 ## Dependencies
 
-* `makeup-navigation-emitter`
-* `makeup-next-id`
+* [makeup-navigation-emitter](https://github.com/makeup-js/makeup-navigation-emitter)
+* [makeup-next-id](https://github.com/makeup-js/makeup-next-id)
 
-## Requirements
+## Polyfills
 
-* CustomEvent polyfill for IE11 (included if bundling with Lasso)
-* NodeList.forEach polyfill for IE11 (included if bundling with Lasso)
+* [custom-event-polyfill](https://github.com/krambuhl/custom-event-polyfill)
+* [nodelist-foreach-polyfill](https://github.com/imagitama/nodelist-foreach-polyfill)
 
 ## Development
 
