@@ -118,6 +118,14 @@ class LinearActiveDescendant extends ActiveDescendant {
         }
     }
 
+    get index() {
+        return this._navigationEmitter.model.index;
+    }
+
+    set index(newIndex) {
+        this._navigationEmitter.model.index = newIndex;
+    }
+
     get _items() {
         return this._ownedEl.querySelectorAll(this._itemSelector);
     }

@@ -188,6 +188,14 @@ function (_ActiveDescendant) {
       this._navigationEmitter.destroy();
     }
   }, {
+    key: "index",
+    get: function get() {
+      return this._navigationEmitter.model.index;
+    },
+    set: function set(newIndex) {
+      this._navigationEmitter.model.index = newIndex;
+    }
+  }, {
     key: "_items",
     get: function get() {
       return this._ownedEl.querySelectorAll(this._itemSelector);

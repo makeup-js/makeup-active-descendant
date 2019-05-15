@@ -109,6 +109,14 @@ Use CSS to style the active descendant however you wish:
         * fromIndex
         * toIndex
 
+## Properties
+
+* `index`: the index position of the current active descendant
+
+## Methods
+
+* `destroy`: destroys all event listeners
+
 ## Dependencies
 
 * [makeup-navigation-emitter](https://github.com/makeup-js/makeup-navigation-emitter)
