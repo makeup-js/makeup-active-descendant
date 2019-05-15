@@ -1,5 +1,5 @@
-$_mod.installed("makeup-active-descendant$0.1.0", "custom-event-polyfill", "1.0.7");
-$_mod.installed("makeup-active-descendant$0.1.0", "nodelist-foreach-polyfill", "1.2.0");
+$_mod.installed("makeup-active-descendant$0.1.1", "custom-event-polyfill", "1.0.7");
+$_mod.installed("makeup-active-descendant$0.1.1", "nodelist-foreach-polyfill", "1.2.0");
 $_mod.main("/nodelist-foreach-polyfill$1.2.0", "");
 $_mod.def("/nodelist-foreach-polyfill$1.2.0/index", function(require, exports, module, __filename, __dirname) { if (window.NodeList && !NodeList.prototype.forEach) {
     NodeList.prototype.forEach = function (callback, thisArg) {
@@ -11,13 +11,13 @@ $_mod.def("/nodelist-foreach-polyfill$1.2.0/index", function(require, exports, m
 }
 
 });
-$_mod.installed("makeup-active-descendant$0.1.0", "makeup-navigation-emitter", "0.2.0");
+$_mod.installed("makeup-active-descendant$0.1.1", "makeup-navigation-emitter", "0.2.0");
 $_mod.installed("makeup-navigation-emitter$0.2.0", "custom-event-polyfill", "1.0.7");
 $_mod.installed("makeup-navigation-emitter$0.2.0", "nodelist-foreach-polyfill", "1.2.0");
 $_mod.installed("makeup-key-emitter$0.1.0", "custom-event-polyfill", "1.0.7");
 $_mod.installed("makeup-exit-emitter$0.1.0", "custom-event-polyfill", "1.0.7");
-$_mod.installed("makeup-active-descendant$0.1.0", "makeup-next-id", "0.0.2");
-$_mod.def("/makeup-active-descendant$0.1.0/index", function(require, exports, module, __filename, __dirname) { 'use strict';
+$_mod.installed("makeup-active-descendant$0.1.1", "makeup-next-id", "0.0.2");
+$_mod.def("/makeup-active-descendant$0.1.1/index", function(require, exports, module, __filename, __dirname) { 'use strict';
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
