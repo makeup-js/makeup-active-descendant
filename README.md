@@ -25,7 +25,22 @@ npm install makeup-active-descendant
 yarn add makeup-active-descendant
 ```
 
-## Example
+## Example 1: Owned Element
+
+In this example the focusable element is not an ancestor of the "descendant" elements. The module will add `aria-owns` to create a programmatic relationship between the two elements. This is typical of a combobox or date-picker type pattern.
+
+Starting markup:
+
+```html
+<div class="widget">
+    <input type="text">
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+</div>
+```
 
 ```js
 // require the module
@@ -37,29 +52,17 @@ const widgetEl = document.querySelector('.widget');
 // get the focus element reference
 const focusEl = widgetEl.querySelector('input');
 
-// get the owned element reference
-const ownedEl = widgetEl.querySelector('ul');
+// get the element that contains the "descendant" items.
+// This element will be programmatically "owned" by the focus element.
+const containerEl = widgetEl.querySelector('ul');
 
 // create an activeDescendant widget instance on the element
-const activeDescendant = ActiveDescendant.createLinear(widgetEl, focusEl, ownedEl, 'li');
+const activeDescendant = ActiveDescendant.createLinear(widgetEl, focusEl, containerEl, 'li');
 
 // listen for events (optional)
 widgetEl.addEventListener('activeDescendantChange', function(e) {
     console.log(e.detail);
 });
-```
-
-Markup before:
-
-```html
-<div class="widget">
-    <input type="text">
-    <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-    </ul>
-</div>
 ```
 
 Markup after instantiation:
@@ -81,6 +84,78 @@ Markup after pressing down arrow key on focusable element:
 <div class="widget" id="widget-0">
     <input type="text" aria-activedescendant="widget-0-item-0" aria-owns="widget-0-list-0">
     <ul id="widget-0-list-0">
+        <li class="active-descendant" id="widget-0-item-0" data-makeup-index="0">Item 1</li>
+        <li id="widget-0-item-1" data-makeup-index="1">Item 2</li>
+        <li id="widget-0-item-2" data-makeup-index="2">Item 3</li>
+    </ul>
+</div>
+```
+
+Use CSS to style the active descendant however you wish:
+
+```css
+.widget .active-descendant {
+    font-weight: bold;
+}
+```
+
+## Example 2: Simple
+
+In this example the focusable element is an ancestor of the list items and therefore the "descendant" relationship can be automatically determined from the DOM hierarchy. This is typical of a standalone listbox or grid widget.
+
+**NOTE**: this module does not add any ARIA roles; only states and properties.  
+
+Starting markup:
+
+```html
+<div class="widget">
+    <ul tabindex="0">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+</div>
+```
+
+```js
+// require the module
+const ActiveDescendant = require('makeup-active-descendant');
+
+// get the widget root element reference
+const widgetEl = document.querySelector('.widget');
+
+// get the focus element reference
+const focusEl = widgetEl.querySelector('ul');
+
+// in this scenario the container element is the same as the focusable element
+const containerEl = focusEL;
+
+// create an activeDescendant widget instance on the element
+const activeDescendant = ActiveDescendant.createLinear(widgetEl, focusEl, containerEl, 'li');
+
+// listen for events (optional)
+widgetEl.addEventListener('activeDescendantChange', function(e) {
+    console.log(e.detail);
+});
+```
+
+Markup after instantiation:
+
+```html
+<div class="widget" id="widget-0">
+    <ul id="widget-0-list-0" tabindex="0">
+        <li id="widget-0-item-0" data-makeup-index="0">Item 1</li>
+        <li id="widget-0-item-1" data-makeup-index="1">Item 2</li>
+        <li id="widget-0-item-2" data-makeup-index="2">Item 3</li>
+    </ul>
+</div>
+```
+
+Markup after pressing down arrow key on focusable element:
+
+```html
+<div class="widget" id="widget-0">
+    <ul id="widget-0-list-0" aria-activedescendant="widget-0-item-0" tabindex="0">
         <li class="active-descendant" id="widget-0-item-0" data-makeup-index="0">Item 1</li>
         <li id="widget-0-item-1" data-makeup-index="1">Item 2</li>
         <li id="widget-0-item-2" data-makeup-index="2">Item 3</li>
