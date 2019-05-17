@@ -4074,13 +4074,13 @@ lru-cache@4.1.x:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
-makeup-exit-emitter@~0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/makeup-exit-emitter/-/makeup-exit-emitter-0.1.0.tgz#cc2ef3583b859900372e9777fc83553761622ee4"
-  integrity sha512-cwtN+GL8ryAz527EccY71zzNk39mBee/hyk7b0nbmbSnXeWhDinctptcDMmRYXF1yrji+jpiUl7gpXBdUEHsnA==
+makeup-exit-emitter@~0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/makeup-exit-emitter/-/makeup-exit-emitter-0.1.1.tgz#4e5ab23cfc2c2d094784685673f8272d5dab1c85"
+  integrity sha512-6yAkYnvjj5aGLWHdjSNasF/tD6AlAgHEvNE0iwYhYAKwB2/YNR79NWLRri2qSXgRiF8AfM7p5pfKTlMCNxWRYA==
   dependencies:
     custom-event-polyfill "^1"
-    makeup-next-id "~0.0.2"
+    makeup-next-id "~0.0.3"
 
 makeup-key-emitter@~0.1.0:
   version "0.1.0"
@@ -4089,20 +4089,20 @@ makeup-key-emitter@~0.1.0:
   dependencies:
     custom-event-polyfill "^1"
 
-makeup-navigation-emitter@~0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/makeup-navigation-emitter/-/makeup-navigation-emitter-0.2.0.tgz#dd7c1f0d2c6e8abdcb8f17ba3d15e29aaca211a9"
-  integrity sha512-YIYGgVinq1ptEmJQknwLTGuWd1/Gyz1RMiv3xmTTDGcQDBfRvJsN/Jx6zCeMDVvhWdOBRY6RTC/QTZcr35quMA==
+makeup-navigation-emitter@~0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/makeup-navigation-emitter/-/makeup-navigation-emitter-0.2.1.tgz#4c6a568f36165671fde96c64fce71cae494fc30e"
+  integrity sha512-TwVp1JkOIKFh/nHMA04ZKVntPUsSbc18DnBUE9j2DLFX91uDywGiDsOBL/O0UAAlV+LalgmxhGpN5SdEKgOZUg==
   dependencies:
     custom-event-polyfill "^1"
-    makeup-exit-emitter "~0.1.0"
+    makeup-exit-emitter "~0.1.1"
     makeup-key-emitter "~0.1.0"
-    nodelist-foreach-polyfill "^1.2.0"
+    nodelist-foreach-polyfill "^1"
 
-makeup-next-id@~0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/makeup-next-id/-/makeup-next-id-0.0.2.tgz#70f19812b0b5cb8d5f0f7f78719179ea4b61a0ef"
-  integrity sha512-nAeDpu/X8Z978mvtj1GnalHNs3ulHOLIpEm2lLAM3SO8KdTDtl4uP3utfW8oYtOZIXaeMhR53JqxFDQ3ZYCZug==
+makeup-next-id@~0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/makeup-next-id/-/makeup-next-id-0.0.3.tgz#75cf06cf39f85fc96f4f6d5a3bec95086b34769c"
+  integrity sha512-ZVRpb31OK8P2qjJzJf2OAQShUmutHvexrCPdtw0SOw1RaIFCD6NPsfnaIapMwZLZWfvnlBijtvQu0lhQIpSEiQ==
 
 map-cache@^0.2.2:
   version "0.2.2"
@@ -4416,7 +4416,7 @@ node-releases@^1.1.17:
   dependencies:
     semver "^5.3.0"
 
-nodelist-foreach-polyfill@^1, nodelist-foreach-polyfill@^1.2.0:
+nodelist-foreach-polyfill@^1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/nodelist-foreach-polyfill/-/nodelist-foreach-polyfill-1.2.0.tgz#92bca739959af68271734087e48474c2fef5152c"
   integrity sha512-hPW0tSoi1gJ3diSOyjFYOsYLZjnxF04psobzKA5GGGCz3fKHnLODwgdyXQq2cddYlvmT3q+ZNEBrfBdMkYPLaA==

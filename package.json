@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "custom-event-polyfill": "^1",
-    "makeup-navigation-emitter": "~0.2.0",
+    "makeup-navigation-emitter": "~0.2.1",
     "nodelist-foreach-polyfill": "^1"
   },
   "files": [
