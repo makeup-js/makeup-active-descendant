@@ -84,7 +84,7 @@ class ActiveDescendant {
 }
 
 class LinearActiveDescendant extends ActiveDescendant {
-    constructor(el, focusEl, ownedEl, itemSelector, selectedOptions) {
+    constructor(el, focusEl, containerEl, itemSelector, selectedOptions) {
         super(el);
 
         this._options = Object.assign({}, defaultOptions, selectedOptions);
@@ -95,14 +95,17 @@ class LinearActiveDescendant extends ActiveDescendant {
         });
 
         this._focusEl = focusEl;
-        this._ownedEl = ownedEl;
+        this._containerEl = containerEl;
         this._itemSelector = itemSelector;
 
         // ensure container has an id
-        nextID(ownedEl);
+        nextID(containerEl);
 
+        // if DOM hierarchy cannot be determined,
         // focus element must programatically 'own' the container of descendant items
-        focusEl.setAttribute('aria-owns', ownedEl.id);
+        if (containerEl !== focusEl) {
+            focusEl.setAttribute('aria-owns', containerEl.id);
+        }
 
         // ensure each item has an id
         this._items.forEach(function(itemEl) {
@@ -127,7 +130,7 @@ class LinearActiveDescendant extends ActiveDescendant {
     }
 
     get _items() {
-        return this._ownedEl.querySelectorAll(this._itemSelector);
+        return this._containerEl.querySelectorAll(this._itemSelector);
     }
 
     set wrap(newWrap) {
@@ -142,14 +145,14 @@ class LinearActiveDescendant extends ActiveDescendant {
 
 /*
 class GridActiveDescendant extends ActiveDescendant {
-    constructor(el, focusEl, ownedEl, rowSelector, cellSelector) {
+    constructor(el, focusEl, containerEl, rowSelector, cellSelector) {
         super(el);
     }
 }
 */
 
-function createLinear(el, focusEl, ownedEl, itemSelector, selectedOptions) {
-    return new LinearActiveDescendant(el, focusEl, ownedEl, itemSelector, selectedOptions);
+function createLinear(el, focusEl, containerEl, itemSelector, selectedOptions) {
+    return new LinearActiveDescendant(el, focusEl, containerEl, itemSelector, selectedOptions);
 }
 
 module.exports = {

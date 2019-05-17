@@ -1285,7 +1285,7 @@ var LinearActiveDescendant =
 function (_ActiveDescendant) {
   _inherits(LinearActiveDescendant, _ActiveDescendant);
 
-  function LinearActiveDescendant(el, focusEl, ownedEl, itemSelector, selectedOptions) {
+  function LinearActiveDescendant(el, focusEl, containerEl, itemSelector, selectedOptions) {
     var _this;
 
     _classCallCheck(this, LinearActiveDescendant);
@@ -1297,12 +1297,16 @@ function (_ActiveDescendant) {
       autoReset: _this._options.autoReset
     });
     _this._focusEl = focusEl;
-    _this._ownedEl = ownedEl;
+    _this._containerEl = containerEl;
     _this._itemSelector = itemSelector; // ensure container has an id
 
-    nextID(ownedEl); // focus element must programatically 'own' the container of descendant items
+    nextID(containerEl); // if DOM hierarchy cannot be determined,
+    // focus element must programatically 'own' the container of descendant items
 
-    focusEl.setAttribute('aria-owns', ownedEl.id); // ensure each item has an id
+    if (containerEl !== focusEl) {
+      focusEl.setAttribute('aria-owns', containerEl.id);
+    } // ensure each item has an id
+
 
     _this._items.forEach(function (itemEl) {
       nextID(itemEl);
@@ -1337,7 +1341,7 @@ function (_ActiveDescendant) {
   }, {
     key: "_items",
     get: function get() {
-      return this._ownedEl.querySelectorAll(this._itemSelector);
+      return this._containerEl.querySelectorAll(this._itemSelector);
     }
   }, {
     key: "wrap",
@@ -1350,15 +1354,15 @@ function (_ActiveDescendant) {
 }(ActiveDescendant);
 /*
 class GridActiveDescendant extends ActiveDescendant {
-    constructor(el, focusEl, ownedEl, rowSelector, cellSelector) {
+    constructor(el, focusEl, containerEl, rowSelector, cellSelector) {
         super(el);
     }
 }
 */
 
 
-function createLinear(el, focusEl, ownedEl, itemSelector, selectedOptions) {
-  return new LinearActiveDescendant(el, focusEl, ownedEl, itemSelector, selectedOptions);
+function createLinear(el, focusEl, containerEl, itemSelector, selectedOptions) {
+  return new LinearActiveDescendant(el, focusEl, containerEl, itemSelector, selectedOptions);
 }
 
 module.exports = {
