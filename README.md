@@ -25,7 +25,7 @@ npm install makeup-active-descendant
 yarn add makeup-active-descendant
 ```
 
-## Example 1: Owned Element
+## Example 1: Programmatic Relationship
 
 In this example the focusable element is not an ancestor of the "descendant" elements. The module will add `aria-owns` to create a programmatic relationship between the two elements. This is typical of a combobox or date-picker type pattern.
 
@@ -99,7 +99,7 @@ Use CSS to style the active descendant however you wish:
 }
 ```
 
-## Example 2: Simple
+## Example 2: Hierarchy Relationship
 
 In this example the focusable element is an ancestor of the list items and therefore the "descendant" relationship can be automatically determined from the DOM hierarchy. This is typical of a standalone listbox or grid widget.
 
