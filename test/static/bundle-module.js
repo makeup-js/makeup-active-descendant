@@ -11,9 +11,9 @@ $_mod.def("/nodelist-foreach-polyfill$1.2.0/index", function(require, exports, m
 }
 
 });
-$_mod.installed("makeup-active-descendant$0.1.3", "makeup-navigation-emitter", "0.2.1");
-$_mod.installed("makeup-navigation-emitter$0.2.1", "custom-event-polyfill", "1.0.7");
-$_mod.installed("makeup-navigation-emitter$0.2.1", "nodelist-foreach-polyfill", "1.2.0");
+$_mod.installed("makeup-active-descendant$0.1.3", "makeup-navigation-emitter", "0.2.2");
+$_mod.installed("makeup-navigation-emitter$0.2.2", "custom-event-polyfill", "1.0.7");
+$_mod.installed("makeup-navigation-emitter$0.2.2", "nodelist-foreach-polyfill", "1.2.0");
 $_mod.installed("makeup-key-emitter$0.1.0", "custom-event-polyfill", "1.0.7");
 $_mod.installed("makeup-exit-emitter$0.1.1", "custom-event-polyfill", "1.0.7");
 $_mod.installed("makeup-active-descendant$0.1.3", "makeup-next-id", "0.0.3");
@@ -43,14 +43,15 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var NavigationEmitter = require('/makeup-navigation-emitter$0.2.1/index'/*'makeup-navigation-emitter'*/);
+var NavigationEmitter = require('/makeup-navigation-emitter$0.2.2/index'/*'makeup-navigation-emitter'*/);
 
 var nextID = require('/makeup-next-id$0.0.3/index'/*'makeup-next-id'*/);
 
 var defaultOptions = {
   activeDescendantClassName: 'active-descendant',
   autoInit: -1,
-  autoReset: -1
+  autoReset: -1,
+  axis: 'both'
 };
 
 function onModelMutation() {
@@ -155,7 +156,8 @@ function (_ActiveDescendant) {
     _this._options = _extends({}, defaultOptions, selectedOptions);
     _this._navigationEmitter = NavigationEmitter.createLinear(el, itemSelector, {
       autoInit: _this._options.autoInit,
-      autoReset: _this._options.autoReset
+      autoReset: _this._options.autoReset,
+      axis: _this._options.axis
     });
     _this._focusEl = focusEl;
     _this._containerEl = containerEl;

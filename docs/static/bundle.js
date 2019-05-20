@@ -662,11 +662,11 @@ $_mod.def("/custom-event-polyfill$1.0.7/polyfill", function(require, exports, mo
 
 });
 $_mod.run("/custom-event-polyfill$1.0.7/polyfill");
-$_mod.installed("makeup-active-descendant$0.1.3", "makeup-navigation-emitter", "0.2.1");
-$_mod.main("/makeup-navigation-emitter$0.2.1", "");
-$_mod.installed("makeup-navigation-emitter$0.2.1", "custom-event-polyfill", "1.0.7");
-$_mod.installed("makeup-navigation-emitter$0.2.1", "nodelist-foreach-polyfill", "1.2.0");
-$_mod.installed("makeup-navigation-emitter$0.2.1", "makeup-key-emitter", "0.1.0");
+$_mod.installed("makeup-active-descendant$0.1.3", "makeup-navigation-emitter", "0.2.2");
+$_mod.main("/makeup-navigation-emitter$0.2.2", "");
+$_mod.installed("makeup-navigation-emitter$0.2.2", "custom-event-polyfill", "1.0.7");
+$_mod.installed("makeup-navigation-emitter$0.2.2", "nodelist-foreach-polyfill", "1.2.0");
+$_mod.installed("makeup-navigation-emitter$0.2.2", "makeup-key-emitter", "0.1.0");
 $_mod.main("/makeup-key-emitter$0.1.0", "");
 $_mod.installed("makeup-key-emitter$0.1.0", "custom-event-polyfill", "1.0.7");
 $_mod.def("/makeup-key-emitter$0.1.0/util", function(require, exports, module, __filename, __dirname) { 'use strict';
@@ -778,7 +778,7 @@ module.exports = {
 };
 
 });
-$_mod.installed("makeup-navigation-emitter$0.2.1", "makeup-exit-emitter", "0.1.1");
+$_mod.installed("makeup-navigation-emitter$0.2.2", "makeup-exit-emitter", "0.1.1");
 $_mod.main("/makeup-exit-emitter$0.1.1", "");
 $_mod.installed("makeup-exit-emitter$0.1.1", "custom-event-polyfill", "1.0.7");
 $_mod.installed("makeup-exit-emitter$0.1.1", "makeup-next-id", "0.0.3");
@@ -908,7 +908,7 @@ module.exports = {
 };
 
 });
-$_mod.def("/makeup-navigation-emitter$0.2.1/index", function(require, exports, module, __filename, __dirname) { 'use strict'; // requires following polyfills or transforms for IE11
+$_mod.def("/makeup-navigation-emitter$0.2.2/index", function(require, exports, module, __filename, __dirname) { 'use strict'; // requires following polyfills or transforms for IE11
 // Object.assign
 // NodeList.forEach
 // CustomEvent
@@ -939,6 +939,7 @@ var ExitEmitter = require('/makeup-exit-emitter$0.1.1/index'/*'makeup-exit-emitt
 
 var dataSetKey = 'data-makeup-index';
 var defaultOptions = {
+  axis: 'both',
   autoInit: 0,
   autoReset: null,
   wrap: false
@@ -1104,10 +1105,18 @@ function () {
     setData(model.items);
     KeyEmitter.addKeyDown(this.el);
     ExitEmitter.addFocusExit(this.el);
-    this.el.addEventListener('arrowLeftKeyDown', this._keyPrevListener);
-    this.el.addEventListener('arrowRightKeyDown', this._keyNextListener);
-    this.el.addEventListener('arrowUpKeyDown', this._keyPrevListener);
-    this.el.addEventListener('arrowDownKeyDown', this._keyNextListener);
+    var axis = model.options.axis;
+
+    if (axis === 'both' || axis === 'x') {
+      this.el.addEventListener('arrowLeftKeyDown', this._keyPrevListener);
+      this.el.addEventListener('arrowRightKeyDown', this._keyNextListener);
+    }
+
+    if (axis === 'both' || axis === 'y') {
+      this.el.addEventListener('arrowUpKeyDown', this._keyPrevListener);
+      this.el.addEventListener('arrowDownKeyDown', this._keyNextListener);
+    }
+
     this.el.addEventListener('homeKeyDown', this._keyHomeListener);
     this.el.addEventListener('endKeyDown', this._keyEndListener);
     this.el.addEventListener('click', this._clickListener);
@@ -1182,14 +1191,15 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var NavigationEmitter = require('/makeup-navigation-emitter$0.2.1/index'/*'makeup-navigation-emitter'*/);
+var NavigationEmitter = require('/makeup-navigation-emitter$0.2.2/index'/*'makeup-navigation-emitter'*/);
 
 var nextID = require('/makeup-next-id$0.0.3/index'/*'makeup-next-id'*/);
 
 var defaultOptions = {
   activeDescendantClassName: 'active-descendant',
   autoInit: -1,
-  autoReset: -1
+  autoReset: -1,
+  axis: 'both'
 };
 
 function onModelMutation() {
@@ -1294,7 +1304,8 @@ function (_ActiveDescendant) {
     _this._options = _extends({}, defaultOptions, selectedOptions);
     _this._navigationEmitter = NavigationEmitter.createLinear(el, itemSelector, {
       autoInit: _this._options.autoInit,
-      autoReset: _this._options.autoReset
+      autoReset: _this._options.autoReset,
+      axis: _this._options.axis
     });
     _this._focusEl = focusEl;
     _this._containerEl = containerEl;

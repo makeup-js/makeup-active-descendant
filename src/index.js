@@ -6,7 +6,8 @@ const nextID = require('makeup-next-id');
 const defaultOptions = {
     activeDescendantClassName: 'active-descendant',
     autoInit: -1,
-    autoReset: -1
+    autoReset: -1,
+    axis: 'both'
 };
 
 function onModelMutation() {
@@ -91,7 +92,8 @@ class LinearActiveDescendant extends ActiveDescendant {
 
         this._navigationEmitter = NavigationEmitter.createLinear(el, itemSelector, {
             autoInit: this._options.autoInit,
-            autoReset: this._options.autoReset
+            autoReset: this._options.autoReset,
+            axis: this._options.axis
         });
 
         this._focusEl = focusEl;
