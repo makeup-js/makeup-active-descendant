@@ -53,10 +53,11 @@ function onModelChange(e) {
 
 function onModelReset() {
     const activeClassName = this._options.activeDescendantClassName;
+    const widget = this;
 
     this._items.forEach(function(el) {
         el.classList.remove(activeClassName);
-        if (this._options.useAriaSelected === true) {
+        if (widget._options.useAriaSelected === true) {
             el.removeAttribute('aria-selected');
         }
     });
