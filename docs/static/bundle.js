@@ -1199,7 +1199,8 @@ var defaultOptions = {
   activeDescendantClassName: 'active-descendant',
   autoInit: -1,
   autoReset: -1,
-  axis: 'both'
+  axis: 'both',
+  useAriaSelected: true
 };
 
 function onModelMutation() {
@@ -1221,12 +1222,18 @@ function onModelChange(e) {
 
   if (fromItem) {
     fromItem.classList.remove(this._options.activeDescendantClassName);
-    fromItem.removeAttribute('aria-selected');
+
+    if (this._options.useAriaSelected === true) {
+      fromItem.removeAttribute('aria-selected');
+    }
   }
 
   if (toItem) {
     toItem.classList.add(this._options.activeDescendantClassName);
-    toItem.setAttribute('aria-selected', 'true');
+
+    if (this._options.useAriaSelected === true) {
+      toItem.setAttribute('aria-selected', 'true');
+    }
 
     this._focusEl.setAttribute('aria-activedescendant', toItem.id);
   }
@@ -1244,13 +1251,19 @@ function onModelReset() {
 
   this._items.forEach(function (el) {
     el.classList.remove(activeClassName);
-    el.removeAttribute('aria-selected');
+
+    if (this._options.useAriaSelected === true) {
+      el.removeAttribute('aria-selected');
+    }
   });
 
   if (this._options.autoReset > -1) {
     var itemEl = this._items[this._options.autoReset];
     itemEl.classList.add(this._options.activeDescendantClassName);
-    itemEl.setAttribute('aria-selected', 'true');
+
+    if (this._options.useAriaSelected === true) {
+      itemEl.setAttribute('aria-selected', 'true');
+    }
 
     this._focusEl.setAttribute('aria-activedescendant', itemEl.id);
   } else {
@@ -1326,7 +1339,10 @@ function (_ActiveDescendant) {
     if (_this._options.autoInit > -1) {
       var itemEl = _this._items[_this._options.autoInit];
       itemEl.classList.add(_this._options.activeDescendantClassName);
-      itemEl.setAttribute('aria-selected', 'true');
+
+      if (_this._options.useAriaSelected === true) {
+        itemEl.setAttribute('aria-selected', 'true');
+      }
 
       _this._focusEl.setAttribute('aria-activedescendant', itemEl.id);
     }
@@ -1403,7 +1419,9 @@ widgetEls.forEach(function (el) {
   el.addEventListener('activeDescendantChange', function (e) {
     console.log(e);
   });
-  var options = {};
+  var options = {
+    useAriaSelected: false
+  };
 
   if (el.dataset.makeupInit !== undefined) {
     options.autoInit = el.dataset.makeupInit;

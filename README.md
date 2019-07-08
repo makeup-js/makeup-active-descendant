@@ -177,6 +177,7 @@ Use CSS to style the active descendant however you wish:
 * `autoInit`: specify an integer or -1 for initial index (default: 0) (see [`makeup-navigation-emitter`](https://github.com/makeup-js/makeup-navigation-emitter#options))
 * `autoReset`: specify an integer or -1 for index position when focus exits widget (default: null) (see [`makeup-navigation-emitter`](https://github.com/makeup-js/makeup-navigation-emitter#options))
 * `axis` : specify 'x' for left/right arrow keys, 'y' for up/down arrow keys, or 'both' (default: 'both')
+* `useAriaSelected` - set to true to use aria-selected state on descendant items (historically required by Safari + Voiceover) (default: true)
 
 ## Custom Events
 

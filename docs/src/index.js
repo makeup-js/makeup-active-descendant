@@ -22,7 +22,9 @@ widgetEls.forEach(function(el) {
         console.log(e);
     });
 
-    const options = {};
+    const options = {
+        useAriaSelected: false
+    };
 
     if (el.dataset.makeupInit !== undefined) {
         options.autoInit = el.dataset.makeupInit;
