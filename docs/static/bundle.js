@@ -1200,7 +1200,7 @@ var defaultOptions = {
   autoInit: -1,
   autoReset: -1,
   axis: 'both',
-  useAriaSelected: true
+  useAriaSelected: false
 };
 
 function onModelMutation() {
