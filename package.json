@@ -38,7 +38,7 @@
     "browser-sync": "^2",
     "core-js-pure": "^3",
     "coveralls": "^3",
-    "eslint": "^5",
+    "eslint": "^6",
     "eslint-config-ebay": "^1",
     "jasmine-core": "^3",
     "karma": "^4",
@@ -48,7 +48,7 @@
     "karma-jasmine": "^2",
     "lasso-cli": "^2",
     "nodelist-foreach-polyfill": "^1",
-    "onchange": "^5",
+    "onchange": "^6",
     "parallelshell": "^3",
     "puppeteer": "^1",
     "rimraf": "^2"
