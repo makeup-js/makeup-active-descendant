@@ -79,21 +79,22 @@ function onModelChange(e) {
   }));
 }
 
-function onModelReset() {
+function onModelReset(e) {
+  var toIndex = e.detail.toIndex;
   var activeClassName = this._options.activeDescendantClassName;
   var widget = this;
 
   this._items.forEach(function (el) {
-    el.classList.remove(activeClassName);
+    el.classList.remove(activeClassName); // deprecated. aria-activedescendant is now well supported without needing aria-selected
 
     if (widget._options.useAriaSelected === true) {
       el.removeAttribute('aria-selected');
     }
   });
 
-  if (this._options.autoReset > -1) {
-    var itemEl = this._items[this._options.autoReset];
-    itemEl.classList.add(this._options.activeDescendantClassName);
+  if (toIndex > -1) {
+    var itemEl = this._items[toIndex];
+    itemEl.classList.add(activeClassName); // deprecated. aria-activedescendant is now well supported without needing aria-selected
 
     if (this._options.useAriaSelected === true) {
       itemEl.setAttribute('aria-selected', 'true');
@@ -185,6 +186,11 @@ function (_ActiveDescendant) {
   }
 
   _createClass(LinearActiveDescendant, [{
+    key: "reset",
+    value: function reset() {
+      this._navigationEmitter.model.reset();
+    }
+  }, {
     key: "destroy",
     value: function destroy() {
       _get(_getPrototypeOf(LinearActiveDescendant.prototype), "destroy", this).call(this);

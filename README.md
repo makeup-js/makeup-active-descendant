@@ -193,6 +193,7 @@ Use CSS to style the active descendant however you wish:
 ## Methods
 
 * `destroy`: destroys all event listeners
+* `reset`: will force a reset to the value specified by `autoReset`
 
 ## Dependencies
 

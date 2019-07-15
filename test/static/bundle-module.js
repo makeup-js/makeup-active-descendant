@@ -11,9 +11,9 @@ $_mod.def("/nodelist-foreach-polyfill$1.2.0/index", function(require, exports, m
 }
 
 });
-$_mod.installed("makeup-active-descendant$0.2.0", "makeup-navigation-emitter", "0.2.2");
-$_mod.installed("makeup-navigation-emitter$0.2.2", "custom-event-polyfill", "1.0.7");
-$_mod.installed("makeup-navigation-emitter$0.2.2", "nodelist-foreach-polyfill", "1.2.0");
+$_mod.installed("makeup-active-descendant$0.2.0", "makeup-navigation-emitter", "0.2.3");
+$_mod.installed("makeup-navigation-emitter$0.2.3", "custom-event-polyfill", "1.0.7");
+$_mod.installed("makeup-navigation-emitter$0.2.3", "nodelist-foreach-polyfill", "1.2.0");
 $_mod.installed("makeup-key-emitter$0.1.0", "custom-event-polyfill", "1.0.7");
 $_mod.installed("makeup-exit-emitter$0.1.1", "custom-event-polyfill", "1.0.7");
 $_mod.installed("makeup-active-descendant$0.2.0", "makeup-next-id", "0.0.3");
@@ -43,7 +43,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var NavigationEmitter = require('/makeup-navigation-emitter$0.2.2/index'/*'makeup-navigation-emitter'*/);
+var NavigationEmitter = require('/makeup-navigation-emitter$0.2.3/index'/*'makeup-navigation-emitter'*/);
 
 var nextID = require('/makeup-next-id$0.0.3/index'/*'makeup-next-id'*/);
 
@@ -98,21 +98,22 @@ function onModelChange(e) {
   }));
 }
 
-function onModelReset() {
+function onModelReset(e) {
+  var toIndex = e.detail.toIndex;
   var activeClassName = this._options.activeDescendantClassName;
   var widget = this;
 
   this._items.forEach(function (el) {
-    el.classList.remove(activeClassName);
+    el.classList.remove(activeClassName); // deprecated. aria-activedescendant is now well supported without needing aria-selected
 
     if (widget._options.useAriaSelected === true) {
       el.removeAttribute('aria-selected');
     }
   });
 
-  if (this._options.autoReset > -1) {
-    var itemEl = this._items[this._options.autoReset];
-    itemEl.classList.add(this._options.activeDescendantClassName);
+  if (toIndex > -1) {
+    var itemEl = this._items[toIndex];
+    itemEl.classList.add(activeClassName); // deprecated. aria-activedescendant is now well supported without needing aria-selected
 
     if (this._options.useAriaSelected === true) {
       itemEl.setAttribute('aria-selected', 'true');
@@ -204,6 +205,11 @@ function (_ActiveDescendant) {
   }
 
   _createClass(LinearActiveDescendant, [{
+    key: "reset",
+    value: function reset() {
+      this._navigationEmitter.model.reset();
+    }
+  }, {
     key: "destroy",
     value: function destroy() {
       _get(_getPrototypeOf(LinearActiveDescendant.prototype), "destroy", this).call(this);
