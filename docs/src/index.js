@@ -11,6 +11,7 @@ appender.addEventListener('click', function() {
     widgetEls.forEach(function(el) {
         const list = el.querySelector('ul');
         const newListItem = document.createElement('li');
+        newListItem.setAttribute('role', 'option');
         const numListItems = parseInt(list.querySelectorAll('li').length, 10);
         newListItem.innerText = `Item ${numListItems}`;
         list.appendChild(newListItem);

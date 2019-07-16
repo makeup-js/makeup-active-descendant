@@ -32,15 +32,15 @@ var defaultOptions = {
   activeDescendantClassName: 'active-descendant',
   autoInit: -1,
   autoReset: -1,
-  axis: 'both',
-  useAriaSelected: false
+  axis: 'both'
 };
 
 function onModelMutation() {
   var options = this._options;
   var modelIndex = this._navigationEmitter.model.index;
+  this.filteredItems.forEach(function (item, index) {
+    nextID(item);
 
-  this._items.forEach(function (item, index) {
     if (index !== modelIndex) {
       item.classList.remove(options.activeDescendantClassName);
     } else {
@@ -50,23 +50,15 @@ function onModelMutation() {
 }
 
 function onModelChange(e) {
-  var fromItem = this._items[e.detail.fromIndex];
-  var toItem = this._items[e.detail.toIndex];
+  var fromItem = this.filteredItems[e.detail.fromIndex];
+  var toItem = this.filteredItems[e.detail.toIndex];
 
   if (fromItem) {
     fromItem.classList.remove(this._options.activeDescendantClassName);
-
-    if (this._options.useAriaSelected === true) {
-      fromItem.removeAttribute('aria-selected');
-    }
   }
 
   if (toItem) {
     toItem.classList.add(this._options.activeDescendantClassName);
-
-    if (this._options.useAriaSelected === true) {
-      toItem.setAttribute('aria-selected', 'true');
-    }
 
     this._focusEl.setAttribute('aria-activedescendant', toItem.id);
   }
@@ -82,23 +74,13 @@ function onModelChange(e) {
 function onModelReset(e) {
   var toIndex = e.detail.toIndex;
   var activeClassName = this._options.activeDescendantClassName;
-  var widget = this;
-
-  this._items.forEach(function (el) {
-    el.classList.remove(activeClassName); // deprecated. aria-activedescendant is now well supported without needing aria-selected
-
-    if (widget._options.useAriaSelected === true) {
-      el.removeAttribute('aria-selected');
-    }
+  this.filteredItems.forEach(function (el) {
+    el.classList.remove(activeClassName);
   });
 
   if (toIndex > -1) {
-    var itemEl = this._items[toIndex];
-    itemEl.classList.add(activeClassName); // deprecated. aria-activedescendant is now well supported without needing aria-selected
-
-    if (this._options.useAriaSelected === true) {
-      itemEl.setAttribute('aria-selected', 'true');
-    }
+    var itemEl = this.filteredItems[toIndex];
+    itemEl.classList.add(activeClassName);
 
     this._focusEl.setAttribute('aria-activedescendant', itemEl.id);
   } else {
@@ -167,17 +149,13 @@ function (_ActiveDescendant) {
     } // ensure each item has an id
 
 
-    _this._items.forEach(function (itemEl) {
+    _this.items.forEach(function (itemEl) {
       nextID(itemEl);
     });
 
     if (_this._options.autoInit > -1) {
-      var itemEl = _this._items[_this._options.autoInit];
+      var itemEl = _this.filteredItems[_this._options.autoInit];
       itemEl.classList.add(_this._options.activeDescendantClassName);
-
-      if (_this._options.useAriaSelected === true) {
-        itemEl.setAttribute('aria-selected', 'true');
-      }
 
       _this._focusEl.setAttribute('aria-activedescendant', itemEl.id);
     }
@@ -206,9 +184,20 @@ function (_ActiveDescendant) {
       this._navigationEmitter.model.index = newIndex;
     }
   }, {
+    key: "filteredItems",
+    get: function get() {
+      return this._navigationEmitter.model.filteredItems;
+    }
+  }, {
+    key: "items",
+    get: function get() {
+      return this._navigationEmitter.model.items;
+    } // backwards compat
+
+  }, {
     key: "_items",
     get: function get() {
-      return this._containerEl.querySelectorAll(this._itemSelector);
+      return this.items;
     }
   }, {
     key: "wrap",
