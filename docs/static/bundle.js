@@ -783,9 +783,9 @@ $_mod.main("/makeup-exit-emitter$0.2.0", "");
 $_mod.installed("makeup-exit-emitter$0.2.0", "custom-event-polyfill", "1.0.7");
 $_mod.installed("makeup-exit-emitter$0.2.0", "makeup-next-id", "0.1.1");
 $_mod.main("/makeup-next-id$0.1.1", "");
-$_mod.installed("makeup-next-id$0.1.1", "nanoid", "2.0.3");
-$_mod.main("/nanoid$2.0.3", "");
-$_mod.remap("/nanoid$2.0.3/index", "/nanoid$2.0.3/index.browser");
+$_mod.installed("makeup-next-id$0.1.1", "nanoid", "2.1.1");
+$_mod.main("/nanoid$2.1.1", "");
+$_mod.remap("/nanoid$2.1.1/index", "/nanoid$2.1.1/index.browser");
 $_mod.builtin("process", "/process$0.11.10/browser");
 $_mod.def("/process$0.11.10/browser", function(require, exports, module, __filename, __dirname) { // shim for using process in browser
 var process = module.exports = {};
@@ -973,7 +973,14 @@ process.chdir = function (dir) {
 process.umask = function() { return 0; };
 
 });
-$_mod.def("/nanoid$2.0.3/index.browser", function(require, exports, module, __filename, __dirname) { var process=require("process"); if (process.env.NODE_ENV !== 'production') {
+$_mod.def("/nanoid$2.1.1/index.browser", function(require, exports, module, __filename, __dirname) { var process=require("process"); if (process.env.NODE_ENV !== 'production') {
+  if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative') {
+    throw new Error(
+      'React Native does not have a built-in secure random generator. ' +
+      'If you don’t need unpredictable IDs, you can use `nanoid/non-secure`. ' +
+      'For secure ID install `expo-random` locally and use `nanoid/async`.'
+    )
+  }
   if (typeof self === 'undefined' || (!self.crypto && !self.msCrypto)) {
     throw new Error(
       'Your browser does not have secure random generator. ' +
@@ -1003,7 +1010,7 @@ module.exports = function (size) {
 });
 $_mod.def("/makeup-next-id$0.1.1/index", function(require, exports, module, __filename, __dirname) { 'use strict';
 
-var nanoid = require('/nanoid$2.0.3/index.browser'/*'nanoid'*/);
+var nanoid = require('/nanoid$2.1.1/index.browser'/*'nanoid'*/);
 
 var sequenceMap = {};
 var defaultPrefix = 'nid';
