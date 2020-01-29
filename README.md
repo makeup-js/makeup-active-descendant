@@ -103,7 +103,7 @@ Use CSS to style the active descendant however you wish:
 
 In this example the focusable element is an ancestor of the list items and therefore the "descendant" relationship can be automatically determined from the DOM hierarchy. This is typical of a standalone listbox or grid widget.
 
-**NOTE**: this module does not add any ARIA roles; only states and properties.  
+**NOTE**: this module does not add any ARIA roles; only states and properties.
 
 Starting markup:
 
@@ -177,6 +177,7 @@ Use CSS to style the active descendant however you wish:
 * `autoInit`: specify an integer or -1 for initial index (default: 0) (see [`makeup-navigation-emitter`](https://github.com/makeup-js/makeup-navigation-emitter#options))
 * `autoReset`: specify an integer or -1 for index position when focus exits widget (default: null) (see [`makeup-navigation-emitter`](https://github.com/makeup-js/makeup-navigation-emitter#options))
 * `axis` : specify 'x' for left/right arrow keys, 'y' for up/down arrow keys, or 'both' (default: 'both')
+* `scrollInView` : Specify true to scroll the container with all the elements so that they are always in view as you keydown (default: false)
 
 ## Custom Events
 

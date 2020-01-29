@@ -32,7 +32,8 @@ var defaultOptions = {
   activeDescendantClassName: 'active-descendant',
   autoInit: -1,
   autoReset: -1,
-  axis: 'both'
+  axis: 'both',
+  autoScroll: false
 };
 
 function onModelMutation() {
@@ -61,6 +62,11 @@ function onModelChange(e) {
     toItem.classList.add(this._options.activeDescendantClassName);
 
     this._focusEl.setAttribute('aria-activedescendant', toItem.id);
+
+    if (this._config.autoScroll && this._containerEl) {
+      this._containerEl.scrollTop = toItem.offsetTop - this._containerEl.offsetHeight / 2;
+
+    }
   }
 
   this._el.dispatchEvent(new CustomEvent('activeDescendantChange', {
