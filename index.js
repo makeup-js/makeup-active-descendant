@@ -32,8 +32,8 @@ var defaultOptions = {
   activeDescendantClassName: 'active-descendant',
   autoInit: -1,
   autoReset: -1,
-  axis: 'both',
-  autoScroll: false
+  autoScroll: false,
+  axis: 'both'
 };
 
 function onModelMutation() {
@@ -65,7 +65,6 @@ function onModelChange(e) {
 
     if (this._config.autoScroll && this._containerEl) {
       this._containerEl.scrollTop = toItem.offsetTop - this._containerEl.offsetHeight / 2;
-
     }
   }
 

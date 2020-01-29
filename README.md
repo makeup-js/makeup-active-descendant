@@ -13,7 +13,7 @@ A vanilla JavaScript port of <a href="https://github.com/ianmcburnie/jquery-acti
 
 ## Experimental
 
-This module is still in an experimental state, until it reaches v1.0.0 you must consider all minor releases as breaking changes. Patch releases may introduce new features, but will be backwards compatible.
+This CommonJS module is still in an experimental state, until it reaches v1.0.0 you must consider all minor releases as breaking changes. Patch releases may introduce new features, but will be backwards compatible.
 
 ## Install
 
@@ -176,8 +176,8 @@ Use CSS to style the active descendant however you wish:
 * `activeDescendantClassName`: the HTML class name that will be applied to the ARIA active descendant element (default: 'active-descendant')
 * `autoInit`: specify an integer or -1 for initial index (default: 0) (see [`makeup-navigation-emitter`](https://github.com/makeup-js/makeup-navigation-emitter#options))
 * `autoReset`: specify an integer or -1 for index position when focus exits widget (default: null) (see [`makeup-navigation-emitter`](https://github.com/makeup-js/makeup-navigation-emitter#options))
+* `autoScroll` : Specify true to scroll the container as activeDescendant changes (default: false)
 * `axis` : specify 'x' for left/right arrow keys, 'y' for up/down arrow keys, or 'both' (default: 'both')
-* `scrollInView` : Specify true to scroll the container with all the elements so that they are always in view as you keydown (default: false)
 
 ## Custom Events
 
@@ -206,22 +206,6 @@ Use CSS to style the active descendant however you wish:
 
 * [custom-event-polyfill](https://github.com/krambuhl/custom-event-polyfill)
 * [nodelist-foreach-polyfill](https://github.com/imagitama/nodelist-foreach-polyfill)
-
-## Development
-
-* `npm start`
-* `npm test`
-* `npm run lint`
-* `npm run fix`
-* `npm run build`
-* `npm run clean`
-
-## Test Reports
-
-Each test run will generate the following reports:
-
-* `/reports/coverage` contains Istanbul code coverage report
-* `/reports/html` contains HTML test report
 
 ## CI Build
 
