@@ -1,5 +1,5 @@
 describe('makeup-active-descendant', function() {
-    var ActiveDescendant = require('../index.js');
+    var ActiveDescendant = require('../src/index.js');
     var dom = '<div class="widget">'
                 + '<input/>'
                 + '<ul>'

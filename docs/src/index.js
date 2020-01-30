@@ -1,6 +1,7 @@
-/* eslint-disable no-console */
+// requires NodeList.forEach polyfill for IE
+require('nodelist-foreach-polyfill');
 
-const ActiveDescendant = require('../index.js');
+const ActiveDescendant = require('../../index.js');
 
 const navs = [];
 const appender = document.getElementById('appender');
