@@ -37,7 +37,7 @@ function onModelChange(e) {
         toItem.classList.add(this._options.activeDescendantClassName);
         this._focusEl.setAttribute('aria-activedescendant', toItem.id);
 
-        if (this._config.autoScroll && this._containerEl) {
+        if (this._options.autoScroll && this._containerEl) {
             this._containerEl.scrollTop = toItem.offsetTop - this._containerEl.offsetHeight / 2;
         }
     }
