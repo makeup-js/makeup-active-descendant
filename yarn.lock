@@ -4143,10 +4143,10 @@ make-dir@^2.0.0, make-dir@^2.1.0:
     pify "^4.0.1"
     semver "^5.6.0"
 
-makeup-exit-emitter@~0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/makeup-exit-emitter/-/makeup-exit-emitter-0.2.3.tgz#774dbe2e37f1be36df74fbb49f9cb3fb09bee198"
-  integrity sha512-QAbqMA7oOfKWdrrQRqEUq6IEjjIZKqBlH4UoGLu/ZlhiRdiX3Ruk6rKfpRPgbbhPIxCzYJPlov41kKj1wHuKdw==
+makeup-exit-emitter@~0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/makeup-exit-emitter/-/makeup-exit-emitter-0.2.4.tgz#852792d62566ea26b84582fedca690f4302cccbc"
+  integrity sha512-NzNwlUnPaqZIbgktqJnuiD6jAtZwpF9SSyzH4HV3t6g3lc6BR0cGQywqEow3r6sHan8UnTPeLqIbco/cPXXmlw==
   dependencies:
     custom-event "^1"
     makeup-next-id "~0.1.2"
@@ -4158,13 +4158,13 @@ makeup-key-emitter@~0.1.2:
   dependencies:
     custom-event "^1"
 
-makeup-navigation-emitter@~0.3.3:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/makeup-navigation-emitter/-/makeup-navigation-emitter-0.3.3.tgz#659c9fff0e08d72719596b9a6ab266d303195aea"
-  integrity sha512-KD5slS/u0eCqlvnH1Na7b6cxiaSiD4jxSotoU4TkYyFntfI8UF5I5QfckbP0hiHffqXjMp89xQTWdynMdVQEJQ==
+makeup-navigation-emitter@~0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/makeup-navigation-emitter/-/makeup-navigation-emitter-0.3.4.tgz#abd500f25d1336267995cba6ba65e16b6b6363c6"
+  integrity sha512-fP9IdzQ9tjSrpms0HN3n8EuwFhtmU2XF4LDnBgliik90VYMDq6bAtZWmZbugWP6nkbdDuU5pNnxhMZ5SfUC/zQ==
   dependencies:
     custom-event "^1"
-    makeup-exit-emitter "~0.2.3"
+    makeup-exit-emitter "~0.2.4"
     makeup-key-emitter "~0.1.2"
     nodelist-foreach-polyfill "^1"
 

@@ -60,7 +60,7 @@
   },
   "dependencies": {
     "custom-event": "^1",
-    "makeup-navigation-emitter": "~0.3.3",
+    "makeup-navigation-emitter": "~0.3.4",
     "nodelist-foreach-polyfill": "^1"
   },
   "files": [
