@@ -1,7 +1,10 @@
 'use strict';
 
 // requires NodeList.forEach polyfill for IE
-require('nodelist-foreach-polyfill');
+// conditional check due to https://github.com/imagitama/nodelist-foreach-polyfill/issues/7
+if (typeof window !== 'undefined') {
+    require('nodelist-foreach-polyfill');
+}
 
 // requires CustomEvent polyfill for IE
 // https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent

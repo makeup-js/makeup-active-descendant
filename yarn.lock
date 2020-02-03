@@ -4143,29 +4143,29 @@ make-dir@^2.0.0, make-dir@^2.1.0:
     pify "^4.0.1"
     semver "^5.6.0"
 
-makeup-exit-emitter@~0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/makeup-exit-emitter/-/makeup-exit-emitter-0.2.2.tgz#0a3a8ef7b1ff5421db05c88cffecafdc3b5a17ea"
-  integrity sha512-CRHHYHwG0uCisNInARksrOuIdGrs3n3u63inCoa8zJVw7NGbKzqTAhmi4Vdmaa6ZPeGd6XwqMdYvj7TRzYLYIQ==
+makeup-exit-emitter@~0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/makeup-exit-emitter/-/makeup-exit-emitter-0.2.3.tgz#774dbe2e37f1be36df74fbb49f9cb3fb09bee198"
+  integrity sha512-QAbqMA7oOfKWdrrQRqEUq6IEjjIZKqBlH4UoGLu/ZlhiRdiX3Ruk6rKfpRPgbbhPIxCzYJPlov41kKj1wHuKdw==
   dependencies:
     custom-event "^1"
     makeup-next-id "~0.1.2"
 
-makeup-key-emitter@~0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/makeup-key-emitter/-/makeup-key-emitter-0.1.1.tgz#c204edffcc155b70b455451e97eb69005d4fce4e"
-  integrity sha512-FCyUUut8OS+enTXGGrxn85st6k1/iXeW592W9uhosslUa++OtIcDFzX4w8KleXD3A/1aH/bxiuqxgPCXveZAKA==
+makeup-key-emitter@~0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/makeup-key-emitter/-/makeup-key-emitter-0.1.2.tgz#9e9dd655846912a7ff94390486dd3d4506c10509"
+  integrity sha512-r/NLb/QJTgLFeiGyYlaoEmf3OQITPp4zCEeavBiBdQpvi7xKAKAa2mJkx26uly0VRWvIYJ1egPWkbE3D0Gnsvg==
   dependencies:
     custom-event "^1"
 
-makeup-navigation-emitter@~0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/makeup-navigation-emitter/-/makeup-navigation-emitter-0.3.2.tgz#1b308a9109d194f2f01c0853936bf7c90b547c10"
-  integrity sha512-3tmNQRUXGlbctWmh7JYq28N8WEVooDE+LkDW94kvcsoavpHJStOzByM1kmG23tZ9pnfrGWT8W2yX4/tXlk0m0A==
+makeup-navigation-emitter@~0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/makeup-navigation-emitter/-/makeup-navigation-emitter-0.3.3.tgz#659c9fff0e08d72719596b9a6ab266d303195aea"
+  integrity sha512-KD5slS/u0eCqlvnH1Na7b6cxiaSiD4jxSotoU4TkYyFntfI8UF5I5QfckbP0hiHffqXjMp89xQTWdynMdVQEJQ==
   dependencies:
     custom-event "^1"
-    makeup-exit-emitter "~0.2.2"
-    makeup-key-emitter "~0.1.1"
+    makeup-exit-emitter "~0.2.3"
+    makeup-key-emitter "~0.1.2"
     nodelist-foreach-polyfill "^1"
 
 makeup-next-id@~0.1.2:
