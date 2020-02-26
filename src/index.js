@@ -2,7 +2,7 @@
 
 // requires NodeList.forEach polyfill for IE
 // conditional check due to https://github.com/imagitama/nodelist-foreach-polyfill/issues/7
-if (typeof window !== 'undefined') {
+if (typeof Element !== 'undefined') {
     require('nodelist-foreach-polyfill');
 }
 

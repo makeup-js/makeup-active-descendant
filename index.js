@@ -25,7 +25,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-if (typeof window !== 'undefined') {
+if (typeof Element !== 'undefined') {
   require('nodelist-foreach-polyfill');
 } // requires CustomEvent polyfill for IE
 // https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent
